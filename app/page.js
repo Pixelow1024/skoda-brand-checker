@@ -138,9 +138,9 @@ ZASADY NADRZĘDNE — przeczytaj je zanim cokolwiek ocenisz:
 1. DOMNIEMANIE ZGODNOŚCI: jeśli nie jesteś w 95% pewny że to naruszenie — NIE flaguj. Wątpliwość = zgodność.
 2. TYLKO TO CO WIDZISZ: flaguj wyłącznie na podstawie tego co jest wyraźnie widoczne na grafice. Nie zakładaj że coś jest złe jeśli nie możesz tego konkretnie wskazać.
 3. KOLORY: Škoda ma DWA dozwolone zielone — Emerald Green (#0E3A2F, ciemny) i Electric Green (#78FAAE, jasny neonowy). OBA są poprawne. Nie flaguj żadnego z nich jako błąd. Flaguj tylko kolory które są wyraźnie spoza palety (np. niebieski, czerwony, żółty użyte jako tło lub główny kolor).
-4. FACETY: NIE oceniaj kąta facet na podstawie zdjęcia — to niemożliwe bez narzędzi pomiarowych. Flaguj facety tylko jeśli są wyraźnie równoległe do krawędzi (0°/90°), nakładają się na siebie, lub mają cień/przezroczystość.
+4. FACETY: Zawsze identyfikuj czy facety są obecne i opisz ich kolor w compliant_elements. NIE oceniaj kąta — to niemożliwe bez narzędzi pomiarowych. Flaguj facety tylko jeśli są wyraźnie równoległe do krawędzi (0°/90°), nakładają się na siebie, lub mają cień/przezroczystość. Facety NIE są obowiązkowym elementem każdej grafiki — brak facetu to NIE naruszenie.
 5. LOGO: flaguj tylko jeśli logo jest wyraźnie zniekształcone, obrócone, ma złe proporcje lub jest nieczytelne. Nie flaguj rozmiaru jeśli jest czytelne.
-6. TYPOGRAFIA: flaguj tylko jeśli tekst w BODY COPY lub NAGŁÓWKACH jest napisany FULL CAPSEM. Patrz szczegółowe zasady poniżej.
+6. TYPOGRAFIA: Nazwa marki w copy MUSI być pisana "Škoda" (z háčkiem, wielka S, reszta mała). Flaguj jeśli widzisz "SKODA" (bez háčka, full caps) w treści copy — ale NIE flaguj wordmarku/logotypu. Slogany "Let's get Škoda" i "Life gets Škoda" oraz ich warianty ("Życie nabiera Škody", "Lato nabiera Škody") są DOZWOLONE i prawidłowe. Flaguj tylko jeśli tekst w body copy lub nagłówkach jest napisany FULL CAPSEM i nie jest logotypem ani oficjalną nazwą modelu.
 7. MAXIMUM 3 naruszenia — tylko te których jesteś absolutnie pewny. Lepiej znaleźć 1 prawdziwy błąd niż 5 fałszywych alarmów.
 
 LISTA RZECZY KTÓRYCH ABSOLUTNIE NIE WOLNO CI FLAGOWAĆ:
@@ -165,6 +165,7 @@ FACETY:
 - Kąt facetu który wygląda na około 10-35 stopni — prawidłowy. Nie jesteś w stanie zmierzyć kąta ze zdjęcia.
 - Kolor facetu Electric Green lub Emerald Green — oba prawidłowe, pod warunkiem że nie są oba w tym samym layoucie.
 - Liczba facetów 1, 2 lub 3 — prawidłowa.
+- Brak facetów w grafice — NIE jest naruszeniem. Facety są opcjonalnym elementem identyfikacji wizualnej.
 
 FOTOGRAFIA:
 - Jakość zdjęcia, styl fotografii, oświetlenie — nie oceniaj, to poza zakresem brandbooka CI/CD.
