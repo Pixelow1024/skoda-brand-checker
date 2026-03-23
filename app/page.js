@@ -190,6 +190,15 @@ CO MOŻESZ FLAGOWAĆ (tylko jeśli jesteś absolutnie pewny):
 WYTYCZNE BRANDBOOK:
 ${BRANDBOOK_RULES}
 
+ZASADY SCORINGU — stosuj je ściśle:
+- 0 naruszeń = score 100, status OK
+- 1 naruszenie low = score 90, status MINOR
+- 1 naruszenie medium = score 75, status MINOR
+- 1 naruszenie high = score 55, status MAJOR
+- 2 naruszenia (mix) = score 40-50, status MAJOR
+- 3 naruszenia = score 25, status MAJOR
+NIE zaniżaj score jeśli nie masz pewnych naruszeń. 0 naruszeń = zawsze 100.
+
 Zwróć TYLKO czysty JSON bez markdown:
 {"score":0-100,"status":"OK|MINOR|MAJOR","violations":[{"rule":"...","observation":"opis tego co KONKRETNIE widzisz na grafice, w którym miejscu","severity":"low|medium|high","suggestion":"..."}],"compliant_elements":["..."],"recommendation":"..."}`,
           messages: [{
