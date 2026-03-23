@@ -77,12 +77,27 @@ export default function Home() {
     if (!file || !file.type.startsWith("image/")) return;
     const reader = new FileReader();
     reader.onload = (e) => {
-      const dataUrl = e.target.result;
-      setImageBase64(dataUrl.split(",")[1]);
-      setImageMediaType(file.type || "image/jpeg");
-      setPreviewUrl(dataUrl);
+      const originalUrl = e.target.result;
+      setPreviewUrl(originalUrl);
       setResults(null);
       setError(null);
+
+      // Compress via canvas — max 1800px wide, quality 0.82, always JPEG
+      const img = new Image();
+      img.onload = () => {
+        const MAX = 1800;
+        let { width, height } = img;
+        if (width > MAX) { height = Math.round(height * MAX / width); width = MAX; }
+        if (height > MAX) { width = Math.round(width * MAX / height); height = MAX; }
+        const canvas = document.createElement("canvas");
+        canvas.width = width; canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+        const compressed = canvas.toDataURL("image/jpeg", 0.82);
+        setImageBase64(compressed.split(",")[1]);
+        setImageMediaType("image/jpeg");
+      };
+      img.src = originalUrl;
     };
     reader.readAsDataURL(file);
   }, []);
