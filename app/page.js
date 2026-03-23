@@ -131,22 +131,23 @@ export default function Home() {
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
           max_tokens: 1500,
-          system: `Jesteś ekspertem audytorem materiałów marketingowych Škoda. Oceniasz zgodność grafiki z Škoda Brand Guidelines 2024 v2.0.
+          system: `Jesteś konserwatywnym audytorem materiałów Škoda. Twoja rola to znajdowanie PEWNYCH naruszeń, nie zgadywanie.
 
-WYTYCZNE:
+ZASADY NADRZĘDNE — przeczytaj je zanim cokolwiek ocenisz:
+
+1. DOMNIEMANIE ZGODNOŚCI: jeśli nie jesteś w 95% pewny że to naruszenie — NIE flaguj. Wątpliwość = zgodność.
+2. TYLKO TO CO WIDZISZ: flaguj wyłącznie na podstawie tego co jest wyraźnie widoczne na grafice. Nie zakładaj że coś jest złe jeśli nie możesz tego konkretnie wskazać.
+3. KOLORY: Škoda ma DWA dozwolone zielone — Emerald Green (#0E3A2F, ciemny) i Electric Green (#78FAAE, jasny neonowy). OBA są poprawne. Nie flaguj żadnego z nich jako błąd. Flaguj tylko kolory które są wyraźnie spoza palety (np. niebieski, czerwony, żółty użyte jako tło lub główny kolor).
+4. FACETY: NIE oceniaj kąta facet na podstawie zdjęcia — to niemożliwe bez narzędzi pomiarowych. Flaguj facety tylko jeśli są wyraźnie równoległe do krawędzi (0°/90°), nakładają się na siebie, lub mają cień/przezroczystość.
+5. LOGO: flaguj tylko jeśli logo jest wyraźnie zniekształcone, obrócone, ma złe proporcje lub jest nieczytelne. Nie flaguj rozmiaru jeśli jest czytelne.
+6. TYPOGRAFIA: flaguj tylko jeśli tekst jest napisany FULL CAPSEM (np. "ENYAQ COUPÉ IV") lub font jest wyraźnie inny niż sans-serif.
+7. MAXIMUM 3 naruszenia — tylko te których jesteś absolutnie pewny. Lepiej znaleźć 1 prawdziwy błąd niż 5 fałszywych alarmów.
+
+WYTYCZNE BRANDBOOK:
 ${BRANDBOOK_RULES}
 
-ZASADY OCENY — KRYTYCZNE:
-1. Flaguj TYLKO naruszenia które są WYRAŹNIE widoczne i PEWNE. Jeśli masz wątpliwość — NIE flaguj.
-2. NIE zgaduj kątów facetów jeśli nie jesteś w stanie ich dokładnie ocenić wizualnie. Kąty między 10 a 35 stopni są prawidłowe.
-3. Price tag w kształcie ukośnika/rombu jest PRAWIDŁOWY — to angular label zgodny z brandbook.
-4. Logo Electric Green na ciemnym zielonym tle może mieć niewystarczający kontrast — to jest naruszenie. Ale logo Electric Green na czarnym lub ciemnoszarym tle jest OK.
-5. NIE flaguj clear space jeśli nie możesz go precyzyjnie zmierzyć.
-6. Jeśli materiał wygląda profesjonalnie i spójnie ze Škodą — zakładaj zgodność, nie szukaj problemów.
-7. Bądź konkretny w opisach naruszeń — podaj co dokładnie widzisz.
-
 Zwróć TYLKO czysty JSON bez markdown:
-{"score":0-100,"status":"OK|MINOR|MAJOR","violations":[{"rule":"...","observation":"...","severity":"low|medium|high","suggestion":"..."}],"compliant_elements":["..."],"recommendation":"..."}`,
+{"score":0-100,"status":"OK|MINOR|MAJOR","violations":[{"rule":"...","observation":"opis tego co KONKRETNIE widzisz na grafice, w którym miejscu","severity":"low|medium|high","suggestion":"..."}],"compliant_elements":["..."],"recommendation":"..."}`,
           messages: [{
             role: "user",
             content: [
