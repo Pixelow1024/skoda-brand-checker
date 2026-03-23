@@ -150,6 +150,8 @@ WORDMARK / LOGO:
 - Rozmiar wordmarku — brandbook nie określa maksymalnego rozmiaru logo, tylko clear space. Nie flaguj że logo jest "za duże" jeśli clear space jest zachowany.
 - Pozycja logo (góra, dół, róg, centrum) — wszystkie pozycje są dozwolone według brandbooka.
 - Spacing wordmarku (100%, 130%, 160%) — wszystkie wersje są prawidłowe.
+- Logo na zielonym tle (Electric Green lub Emerald Green) — brandbook NAKAZUJE uzywac bialego lub ciemnego logo na zielonym tle. Biale lub ciemne logo na zielonym tle jest PRAWIDLOWE. NIE flaguj kontrastu w takiej sytuacji.
+- Jedyne naruszenie kontrastu logo: jasne Electric Green logo na jasnym Electric Green tle (jasne na jasnym) — wyraznie nieczytelne. We wszystkich innych kombinacjach zakladaj prawidlowy kontrast.
 
 NAZWY MODELI:
 - Nazwy modeli Škoda często mają niestandarowe zapisy: "iV", "RS", "4x4", "e-TEC" — to są oficjalne nazwy, NIE naruszenia capslock. Nie kwestionuj pisowni nazw modeli.
