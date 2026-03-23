@@ -2,48 +2,55 @@
 import { useState, useRef, useCallback } from "react";
 
 const BRANDBOOK_RULES = `
-ŠKODA BRAND GUIDELINES 2024
+SZKODA BRAND GUIDELINES 2024 - ZASADY CI/CD (wersja 2.0)
 
 === LOGO / WORDMARK ===
-- Dozwolone kolory logo: Emerald Green (#0E3A2F), Electric Green (#78FAAE), Biały, Czarny. NIGDY szary.
-- Clear space: co najmniej 1 BU (wysokość wordmarku) ze wszystkich stron.
-- Logo NIE MOŻE być: przycinane, obracane, zniekształcane, odbijane, rozciągane, z cieniem.
-- Logo musi być czytelne — kontrast z tłem obowiązkowy.
-- Minimalny rozmiar ekranowy: 15px wysokości.
+- Logo uzywane w dwoch kolorach: Emerald Green (#0E3A2F) lub Electric Green (#78FAAE).
+- Jesli tlo jest zielone (Emerald lub Electric), uzyj bialego lub czarnego logo - kontrast OBOWIAZKOWY.
+- Logo moze byc tez biale lub czarne gdy brakuje kontrastu z zielonym tlem.
+- Clear space: minimum 1 BU (= wysokosc wordmarku) ze wszystkich stron.
+- Logo moze byc w rogach lub wycentrowane - zaleznie od kompozycji.
+- Logo NIE MOZE byc: przycinane, obracane, znieksztalcane, odbijane, rozciagane, z cieniem.
+- Spacing wordmarku: 100%, 130% lub 160% szerokosci - elastyczny.
 
 === KOLORY PRIMARY ===
-- Emerald Green: #0E3A2F
-- Electric Green: #78FAAE (cyfrowy akcent neonowy)
+- Emerald Green: #0E3A2F (RGB 14-58-47)
+- Electric Green: #78FAAE (RGB 120-250-174)
+- Te dwa kolory to fundament identyfikacji marki.
 
 === KOLORY SECONDARY ===
-- Black, Dark Grey #394748, Stone Grey #6F7979, Medium Grey #CACECF, White
-- Używane tylko jako neutral/supporting
+- Black, Dark Grey, Stone Grey, Medium Grey, White
+- Tylko jako neutral/supporting, nigdy dominujace.
 
-=== KOLORY TERTIARY — TYLKO w infografikach ===
+=== KOLORY TERTIARY - TYLKO w infografikach ===
 - Red, Blue, Teal, Yellow, Orange
-- ZAKAZ w reklamach i digital ads
+- ZAKAZ uzycia w reklamach i digital ads.
 
 === TYPOGRAFIA ===
-- Font: Škoda Next (Light i Bold)
-- Mixed casing — ZAKAZ CAPSLOCKA dla nagłówków i nazw modeli
-- Kolory tekstu: Emerald Green, Electric Green, Black, White
-- Tekst NIE MOŻE być nieczytelny — obowiązkowy kontrast
+- Font: Skoda Next (warianty: Light, Regular, Bold)
+- Mixed casing - ZAKAZ pisania naglowkow i nazw modeli CAPSLOCKIEM.
+- Tekst musi miec wystarczajacy kontrast z tlem - czytelnosc obowiazkowa.
 
-=== FACETY ===
-- Kąt: 10° do 35°. ZAKAZ: 0°, 45°, 90°
-- Max 3 facety (OOH), 2 (digital), 2 (dealer print)
-- Kolory: TYLKO Electric lub Emerald. ZAKAZ mieszania obu w jednym layoucie.
-- ZAKAZ cieni i przezroczystości na facetach
-- Facety NIE MOGĄ się nakładać ani nakrywać ważnych części fotografii
+=== FACETY (Skoda Facets) ===
+- Facety to wielokaty wciagane do layoutu z 4 kierunkow: gora, dol, lewo, prawo.
+- Kat obrotu: 10 do 35 stopni w obu kierunkach. ZAKAZ katow bliskich 0, 45 lub 90 stopni.
+- Dozwolona liczba facetow: max 3 w jednym layoucie.
+- Kolory facetow: TYLKO Electric Green LUB Emerald Green - NIGDY oba w jednym layoucie.
+- ZAKAZ: cieni na facetach, przezroczystosci, nakladania sie facetow.
+- Facety NIE MOGA zakrywac waznych czesci fotografii (twarze, kluczowe elementy).
+- Facety powinny byc zbalansowane proporcjonalnie.
 
 === LAYOUT ===
-- Zasady: Contrast, Clarity, Dynamic
-- Margines: min. 1 BU od krawędzi
-- ZAKAZ gradientów na elementach brandowych
+- Zasady kompozycji: Contrast, Clarity, Dynamic.
+- Unikaj rownolegly facetow - daja wrazenie sztywnosci.
 
 === CTA BUTTON ===
-- Tylko w digital media. Kolory: Electric Green, Emerald Green lub Black.
-- ZAKAZ łączenia CTA i price tag w tym samym materiale.
+- Dozwolone kolory CTA: Electric Green, Emerald Green, Black.
+- Ksztalt: pill (zaokraglony prostokat).
+
+=== PRICE TAG ===
+- Price tag to angular label (ukosna etykieta) - uzywana w print i digital.
+- Ksztalt ukosny jest PRAWIDLOWY i zgodny z brandbook.
 `;
 
 const LOADING_MESSAGES = [
@@ -124,7 +131,22 @@ export default function Home() {
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
           max_tokens: 1500,
-          system: `Jesteś ekspertem audytorem materiałów marketingowych Škoda. Oceniasz zgodność grafiki z brandbook Škoda 2024.\n\nWYTYCZNE:\n${BRANDBOOK_RULES}\n\nZwróć TYLKO czysty JSON bez markdown:\n{"score":0-100,"status":"OK|MINOR|MAJOR","violations":[{"rule":"...","observation":"...","severity":"low|medium|high","suggestion":"..."}],"compliant_elements":["..."],"recommendation":"..."}`,
+          system: `Jesteś ekspertem audytorem materiałów marketingowych Škoda. Oceniasz zgodność grafiki z Škoda Brand Guidelines 2024 v2.0.
+
+WYTYCZNE:
+${BRANDBOOK_RULES}
+
+ZASADY OCENY — KRYTYCZNE:
+1. Flaguj TYLKO naruszenia które są WYRAŹNIE widoczne i PEWNE. Jeśli masz wątpliwość — NIE flaguj.
+2. NIE zgaduj kątów facetów jeśli nie jesteś w stanie ich dokładnie ocenić wizualnie. Kąty między 10 a 35 stopni są prawidłowe.
+3. Price tag w kształcie ukośnika/rombu jest PRAWIDŁOWY — to angular label zgodny z brandbook.
+4. Logo Electric Green na ciemnym zielonym tle może mieć niewystarczający kontrast — to jest naruszenie. Ale logo Electric Green na czarnym lub ciemnoszarym tle jest OK.
+5. NIE flaguj clear space jeśli nie możesz go precyzyjnie zmierzyć.
+6. Jeśli materiał wygląda profesjonalnie i spójnie ze Škodą — zakładaj zgodność, nie szukaj problemów.
+7. Bądź konkretny w opisach naruszeń — podaj co dokładnie widzisz.
+
+Zwróć TYLKO czysty JSON bez markdown:
+{"score":0-100,"status":"OK|MINOR|MAJOR","violations":[{"rule":"...","observation":"...","severity":"low|medium|high","suggestion":"..."}],"compliant_elements":["..."],"recommendation":"..."}`,
           messages: [{
             role: "user",
             content: [
