@@ -403,7 +403,7 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
               </div>
             </div>
 
-            {/* Violations */
+            {/* Violations */}
             {results.violations?.length > 0 && (
               <>
                 <div style={s({ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6F7979", marginBottom: 10, marginTop: 28 })}>
