@@ -153,7 +153,7 @@ Jeśli obca marka dominuje wizualnie (logo lub nazwa obcej marki większa lub r�
 KROK 2 — OCEŃ WEDŁUG ZASAD:
 
 ZASADY NADRZĘDNE:
-1. DOMNIEMANIE ZGODNOŚCI: jeśli nie jesteś w 95% pewny że to naruszenie — NIE flaguj. Wątpliwość = zgodność. PRZED zapisaniem każdego naruszenia do violations zadaj sobie pytanie: "Czy jestem absolutnie pewny że to błąd?" Jeśli w swoim opisie używasz słów takich jak "jednak", "ale", "zgodnie z wytycznymi jest prawidłowe", "brak naruszenia", "jest dozwolone" — to znaczy że SAM wątpisz. Taki wpis MUSI być usunięty z violations i przeniesiony do compliant_elements.
+1. DOMNIEMANIE ZGODNOŚCI: jeśli nie jesteś w 95% pewny że to naruszenie — NIE flaguj. Wątpliwość = zgodność. PRZED zapisaniem każdego naruszenia do violations zadaj sobie pytanie: "Czy jestem absolutnie pewny że to błąd?" Jeśli w swoim opisie używasz słów takich jak "jednak", "ale", "zgodnie z wytycznymi jest prawidłowe", "brak naruszenia", "jest dozwolone", "wydaje się być poprawnie" — to znaczy że SAM wątpisz. Taki wpis MUSI być usunięty z violations i przeniesiony do compliant_elements.
 2. TYLKO TO CO WIDZISZ: flaguj wyłącznie to co konkretnie widzisz. Nie zakładaj błędów których nie możesz wskazać.
 3. MAXIMUM 5 naruszeń — tylko te których jesteś absolutnie pewny. Uwzględnij WSZYSTKIE kategorie: HIGH, MEDIUM i LOW. Nie pomijaj naruszeń MEDIUM (np. capslock) tylko dlatego że są już naruszenia HIGH.
 4. MATERIAŁY POLSKIE: oceniamy polskie materiały. Tekst po angielsku w sloganach (Let\'s get, Life gets) jest dozwolony.
@@ -225,6 +225,16 @@ CO-BRANDING I OBCE MARKI:
 - Obca marka dominująca (logo lub nazwa ≥ wordmark Škody) — BLOCKER, score 0.
 - Obca marka obecna ale marginalna (małe logo dealera, drobny co-branding) — naruszenie HIGH (-45 pkt).
 - Drobne disclaimery prawne w małym druku — dozwolone, nie flaguj.
+
+ABSOLUTNA CZARNA LISTA — te rzeczy NIGDY nie mogą trafić do violations, bez żadnych wyjątków:
+- Háček w elemencie graficznym "Let's get ŠKODA!" lub "Life gets ŠKODA" — ABSOLUTNY ZAKAZ flagowania. Ten element używa specjalnego fontu brandowego. Nieważne co widzisz — nie flaguj háčka w sloganie graficznym.
+- Kolor logo białe na ciemnym tle — PRAWIDŁOWE, nie flaguj
+- Kolor logo Electric Green na jasnym tle — PRAWIDŁOWE, nie flaguj
+- Pozycja "centrum dołu" w formacie pionowym — PRAWIDŁOWE, nie flaguj
+- Brak oddzielnego wordmarku gdy obecny jest slogan "Let's get ŠKODA!" — PRAWIDŁOWE, nie flaguj
+- Kolor samochodu na zdjęciu (czerwony, niebieski itd.) — kolor auta to nie kolor brandowy, nie flaguj
+- Disclaimery prawne w małym druku — zawsze dozwolone, nie flaguj
+- Skróty chemiczne i techniczne (CO2, kW, km/h) pisane caps — nie są naruszeniem zasady capslock
 
 WYTYCZNE BRANDBOOK:
 ${BRANDBOOK_RULES}
