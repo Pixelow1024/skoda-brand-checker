@@ -147,7 +147,8 @@ Systematycznie zidentyfikuj WSZYSTKIE elementy na grafice:
 - SLOGAN: czy jest "Let's get Škoda/[model]" lub "Life gets Škoda"?
 
 JEŚLI GRAFIKA NIE JEST MATERIAŁEM ŠKODA:
-Jeśli na grafice nie ma żadnego elementu Škoda — score 0, status MAJOR, naruszenie: "Brak jakiegokolwiek elementu identyfikacji marki Škoda. To nie jest materiał Škoda."
+Jeśli na grafice nie ma żadnego elementu Škoda (logo, wordmark, modelu Škoda, kolorów brandowych) — BLOCKER: score 0, status MAJOR, naruszenie: "Brak jakiegokolwiek elementu identyfikacji marki Škoda. To nie jest materiał Škoda."
+Jeśli obca marka dominuje wizualnie (logo lub nazwa obcej marki większa lub równa wordmarkowi Škody) — BLOCKER: score 0, status MAJOR.
 
 KROK 2 — OCEŃ WEDŁUG ZASAD:
 
@@ -179,13 +180,13 @@ FORMAT "LET\'S GET ŠKODA":
 TYPOGRAFIA:
 - Nazwa marki w copy: zawsze "Škoda" (z háčkiem). "SKODA" bez háčka w body copy — naruszenie MEDIUM.
 - Full caps w nagłówkach i body copy — naruszenie MEDIUM. Wyjątki: logotyp, nazwy modeli (iV, RS, 4x4).
-- DROP SHADOW pod tekstem — naruszenie HIGH. Bardzo częsty błąd, mocno obniża jakość.
+- DROP SHADOW pod tekstem — naruszenie MEDIUM (-25 pkt). Bardzo częsty błąd — dodaj silną rekomendację zmiany w polu suggestion.
 - Font szeryfowy lub handwriting — naruszenie HIGH.
 - Nazwy modeli: "iV", "RS", "4x4", "Enyaq", "Octavia", "Karoq" itd. — prawidłowe, NIE flaguj.
 
 FOTOGRAFIA VS RENDER:
 - Naturalne zdjęcie z prawdziwym tłem = preferowane, pełne punkty.
-- Render studyjny/cyklorama (auto bez otoczenia) = naruszenie LOW (-5 pkt). Zaznacz w rekomendacji że preferowane jest naturalne zdjęcie. Nie jest to błąd krytyczny.
+- Render studyjny/cyklorama (auto bez otoczenia) = INFO, 0 punktów nie odejmujesz. Zaznacz TYLKO w polu recommendation że preferowane jest naturalne zdjęcie. Sprawdź jednak czytelność — jeśli render jest na białej lub szarej cykloramie i tekst jest słabo czytelny, zaznacz to w rekomendacji jako problem do rozwiązania.
 
 FACETY:
 - Zawsze identyfikuj i opisz w compliant_elements jeśli są obecne.
@@ -199,22 +200,44 @@ BUTTON CTA VS EYECATCHER:
 - ZAKAZ łączenia: button CTA i eyecatcher trapezowy w tym samym materiale — naruszenie HIGH.
 
 CO-BRANDING I OBCE MARKI:
-- Materiały wewnętrzne Škoda: zero obcych logotypów i nazw marek wyeksponowanych graficznie.
-- Obecność obcej marki jako dominujący element — naruszenie HIGH.
-- Wyjątek: drobne disclaimery prawne w małym druku są dozwolone.
+- Obca marka dominująca (logo lub nazwa ≥ wordmark Škody) — BLOCKER, score 0.
+- Obca marka obecna ale marginalna (małe logo dealera, drobny co-branding) — naruszenie HIGH (-45 pkt).
+- Drobne disclaimery prawne w małym druku — dozwolone, nie flaguj.
 
 WYTYCZNE BRANDBOOK:
 ${BRANDBOOK_RULES}
 
 ZASADY SCORINGU — stosuj ściśle:
-- 0 naruszeń = score 100, status OK
-- 1 naruszenie low = score 90, status MINOR
-- 1 naruszenie medium = score 75, status MINOR
-- 1 naruszenie high = score 55, status MAJOR
-- 2 naruszenia = score 40-50, status MAJOR
-- 3 naruszenia = score 25, status MAJOR
-- Brak elementów Škoda (nie-Škoda materiał) = score 0, status MAJOR
-0 naruszeń = ZAWSZE score 100.
+
+BLOCKER (score 0, status MAJOR — natychmiast, niezależnie od reszty):
+- Brak jakiegokolwiek elementu Škoda na grafice
+- Obca marka dominująca wizualnie (logo lub nazwa obcej marki większa lub równa wordmarkowi Škody)
+
+HIGH (-45 pkt, status MAJOR):
+- Obce marki obecne ale marginalne (małe logo dealera, drobny co-branding)
+- Font szeryfowy lub handwriting
+- Button CTA i eyecatcher trapezowy w tym samym materiale
+- Format "Let\'s get Škoda" bez nagłówka "Let\'s get [model]!"
+- Kolory tertiary (czerwony, niebieski, żółty) jako dominujące tło lub element brandowy
+
+MEDIUM (-25 pkt, status MINOR):
+- Full caps w nagłówkach lub body copy (nie dotyczy logotypu i nazw modeli)
+- "SKODA" bez háčka w treści copy
+- Logo w złym kolorze (nie Electric Green #78FAAE ani biały)
+- Drop shadow pod tekstem — SILNA REKOMENDACJA ZMIANY, bardzo częsty błąd obniżający jakość
+
+LOW (-10 pkt, status MINOR):
+- Logo nie po prawej stronie (nie prawy dolny róg ani prawa strona)
+
+INFO (0 pkt odejmowania — tylko rekomendacja w polu recommendation):
+- Render studyjny/cyklorama zamiast naturalnego zdjęcia — zaznacz w rekomendacji że preferowane jest naturalne zdjęcie z otoczeniem
+
+OBLICZANIE SCORE:
+- Jeśli jest BLOCKER → score 0, koniec
+- 0 naruszeń → score 100, status OK
+- Odejmuj punkty za każde naruszenie: HIGH=-45, MEDIUM=-25, LOW=-10
+- Minimum score bez BLOCKER: 10
+- Status: score 90-100=OK, score 60-89=MINOR, score 0-59=MAJOR
 
 Zwróć TYLKO czysty JSON bez markdown:
 {"score":0-100,"status":"OK|MINOR|MAJOR","violations":[{"rule":"...","observation":"opis tego co KONKRETNIE widzisz na grafice, w którym miejscu","severity":"low|medium|high","suggestion":"..."}],"compliant_elements":["..."],"recommendation":"..."}`,
