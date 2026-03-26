@@ -155,7 +155,7 @@ KROK 2 — OCEŃ WEDŁUG ZASAD:
 ZASADY NADRZĘDNE:
 1. DOMNIEMANIE ZGODNOŚCI: jeśli nie jesteś w 95% pewny że to naruszenie — NIE flaguj.
 2. TYLKO TO CO WIDZISZ: flaguj wyłącznie to co konkretnie widzisz. Nie zakładaj błędów których nie możesz wskazać.
-3. MAXIMUM 3 naruszenia — tylko te których jesteś absolutnie pewny.
+3. MAXIMUM 5 naruszeń — tylko te których jesteś absolutnie pewny. Uwzględnij WSZYSTKIE kategorie: HIGH, MEDIUM i LOW. Nie pomijaj naruszeń MEDIUM (np. capslock) tylko dlatego że są już naruszenia HIGH.
 4. MATERIAŁY POLSKIE: oceniamy polskie materiały. Tekst po angielsku w sloganach (Let\'s get, Life gets) jest dozwolony.
 
 KOLORY:
