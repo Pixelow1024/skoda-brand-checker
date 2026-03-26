@@ -403,26 +403,7 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
               </div>
             </div>
 
-            {/* Analysis — co model zobaczył */}
-            {results.analysis && (
-              <>
-                <div style={s({ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6F7979", marginBottom: 10, marginTop: 28 })}>
-                  Co model zobaczył
-                </div>
-                <div style={s({ background: "#0d1514", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 4, padding: "14px 18px", marginBottom: 8 })}>
-                  {Object.entries(results.analysis).map(([key, val]) => (
-                    <div key={key} style={s({ display: "flex", gap: 12, marginBottom: 6, fontSize: 12 })}>
-                      <div style={s({ color: "#6F7979", minWidth: 140, flexShrink: 0 })}>{key.replace(/_/g, " ")}</div>
-                      <div style={s({ color: "#CACECF", lineHeight: 1.4 })}>
-                        {Array.isArray(val) ? val.join(" · ") : String(val)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-
-            {/* Violations */}
+            {/* Violations */
             {results.violations?.length > 0 && (
               <>
                 <div style={s({ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6F7979", marginBottom: 10, marginTop: 28 })}>
@@ -470,6 +451,25 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
                 </div>
                 <div style={s({ background: "rgba(120,250,174,0.06)", border: "1px solid rgba(120,250,174,0.15)", borderRadius: 4, padding: "18px 22px" })}>
                   <p style={s({ fontSize: 13, color: "#CACECF", lineHeight: 1.6, fontWeight: 300 })}>{results.recommendation}</p>
+                </div>
+              </>
+            )}
+
+            {/* Analysis — co model zobaczył */}
+            {results.analysis && (
+              <>
+                <div style={s({ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6F7979", marginBottom: 10, marginTop: 28 })}>
+                  Co model zobaczył
+                </div>
+                <div style={s({ background: "#0d1514", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 4, padding: "14px 18px", marginBottom: 8 })}>
+                  {Object.entries(results.analysis).map(([key, val]) => (
+                    <div key={key} style={s({ display: "flex", gap: 12, marginBottom: 6, fontSize: 12 })}>
+                      <div style={s({ color: "#6F7979", minWidth: 140, flexShrink: 0 })}>{key.replace(/_/g, " ")}</div>
+                      <div style={s({ color: "#CACECF", lineHeight: 1.4 })}>
+                        {Array.isArray(val) ? val.join(" · ") : String(val)}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </>
             )}
