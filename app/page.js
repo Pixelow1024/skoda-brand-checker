@@ -179,10 +179,11 @@ LOGO I WORDMARK:
 FORMAT SLOGANÓW — ZASADY OBOWIĄZKOWE:
 
 REGUŁA GŁÓWNA — HIGH (-45 pkt):
-Logo Škoda MUSI zawsze towarzyszyć jednemu z dwóch sloganów:
-- "Let's get ŠKODA!" (duży element graficzny z wordmarkiem)
-- "Life gets ŠKODA" (duży element graficzny z wordmarkiem)
-Jeśli logo Škoda jest obecne BEZ żadnego z tych sloganów = naruszenie HIGH.
+Element graficzny "Let's get ŠKODA!" lub "Life gets ŠKODA" JEST logo Škody w tym formacie — pełni funkcję identyfikacji marki i zastępuje tradycyjny wordmark. Jeśli ten element jest obecny, NIE flaguj braku oddzielnego wordmarku/logo Škody.
+
+Zasada działa w obie strony:
+- Jeśli jest "Let's get ŠKODA!" lub "Life gets ŠKODA" = identyfikacja marki jest zapewniona, NIE wymagaj dodatkowego logo
+- Jeśli NIE MA ani "Let's get ŠKODA!" ani "Life gets ŠKODA" ani tradycyjnego wordmarku Škody = naruszenie HIGH
 
 REGUŁA DODATKOWA — LOW (-10 pkt):
 Jeśli jest "Let's get ŠKODA!" ale NIE MA wcześniej w copy nagłówka "Let's get [nazwa modelu]!" = naruszenie LOW.
@@ -270,7 +271,7 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
 {
   "analysis": {
     "is_skoda_material": true/false,
-    "logo_color": "opisz dokładnie kolor logo który widzisz",
+    "logo_color": "opisz dokładnie kolor logo który widzisz. UWAGA: element graficzny 'Let's get ŠKODA!' lub 'Life gets ŠKODA' JEST logo Škody — jeśli jest obecny, wpisz jego kolor. Nie pisz 'brak logo' jeśli slogan graficzny jest obecny.",
     "format_orientation": "poziomy (landscape, szerokość > wysokość) / pionowy (portrait, wysokość > szerokość) / kwadratowy",
     "logo_position": "wybierz DOKŁADNIE jeden z: [lewy górny róg] / [centrum góry] / [prawy górny róg] / [lewy dolny róg] / [centrum dołu] / [prawy dolny róg] / [centrum]. Dla formatu poziomego: prawy dolny róg i prawa strona to jedyne prawidłowe pozycje. Dla formatu pionowego: centrum dołu jest dozwolone jeśli slogan/logo zajmuje całą szerokość.",
     "logo_position_valid": true/false,
