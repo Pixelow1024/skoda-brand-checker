@@ -164,11 +164,14 @@ KOLORY:
 - Kolor samochodu na zdjęciu NIE jest kolorem brandowym — nie oceniaj koloru auta.
 
 LOGO I WORDMARK:
-- Logo Škoda może być TYLKO w kolorze Electric Green (#78FAAE) lub białym. Inne kolory — naruszenie MEDIUM.
-- Prawidłowa pozycja: prawy dolny róg lub prawa strona. Inna pozycja — naruszenie LOW (-10 pkt).
+- Kolor logo zależy od tła — obie wersje są prawidłowe i NIE flaguj jeśli zapewniają kontrast:
+  * Logo na ciemnym tle (Emerald Green #0E3A2F, czarnym, ciemnoszarym) = białe logo → PRAWIDŁOWE
+  * Logo na jasnym tle (białym, szarym, jasnym) = Electric Green (#78FAAE) lub Emerald Green → PRAWIDŁOWE
+  * Logo Electric Green na Electric Green tle = nieczytelne → naruszenie MEDIUM
+  * Logo w kolorze szarym, srebrnym, złotym lub innym spoza palety = naruszenie MEDIUM
+- Prawidłowa pozycja: prawa strona lub prawy dolny róg. Inna pozycja — naruszenie LOW (-10 pkt).
 - Wordmark "ŠKODA" pisany caps to prawidłowy logotyp — NIE flaguj jako capslock.
-- Logo NIE MOŻE być zniekształcone, obrócone, z cieniem.
-- Logo na zielonym tle: białe logo na zielonym tle jest PRAWIDŁOWE — nie flaguj kontrastu.
+- Logo NIE MOŻE być zniekształcone, obrócone, rozciągane, z cieniem.
 
 FORMAT "LET\'S GET ŠKODA":
 - Jeśli grafika używa logo "Let\'s get Škoda!" — MUSI być nagłówek "Let\'s get [nazwa modelu]!". Brak = naruszenie HIGH (-50 pkt).
@@ -239,8 +242,27 @@ OBLICZANIE SCORE:
 - Minimum score bez BLOCKER: 10
 - Status: score 90-100=OK, score 60-89=MINOR, score 0-59=MAJOR
 
-Zwróć TYLKO czysty JSON bez markdown:
-{"score":0-100,"status":"OK|MINOR|MAJOR","violations":[{"rule":"...","observation":"opis tego co KONKRETNIE widzisz na grafice, w którym miejscu","severity":"low|medium|high","suggestion":"..."}],"compliant_elements":["..."],"recommendation":"..."}`,
+Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — to jest twój obowiązkowy opis grafiki przed oceną. Dopiero po wypełnieniu analysis przejdź do violations:
+
+{
+  "analysis": {
+    "is_skoda_material": true/false,
+    "logo_color": "opisz dokładnie kolor logo który widzisz",
+    "logo_position": "opisz gdzie jest logo: lewy górny, prawy górny, prawy dolny, centrum itp.",
+    "background_colors": "wymień wszystkie kolory tła które widzisz",
+    "texts": ["wypisz każdy tekst który widzisz z dokładną kapitalizacją"],
+    "facets": "opisz czy są facety, ile, jaki kolor",
+    "photo_type": "naturalne zdjęcie / render studyjny / cyklorama",
+    "button_cta": "opisz button jeśli jest: kształt, kolor, tekst",
+    "eyecatcher": "opisz eyecatcher jeśli jest: kształt, tekst",
+    "foreign_brands": "wymień wszystkie obce marki lub logotypy które widzisz, lub 'brak'"
+  },
+  "score": 0-100,
+  "status": "OK|MINOR|MAJOR",
+  "violations": [{"rule": "...", "observation": "opis oparty na tym co napisałeś w analysis", "severity": "low|medium|high", "suggestion": "..."}],
+  "compliant_elements": ["..."],
+  "recommendation": "..."
+}`,
           messages: [{
             role: "user",
             content: [
@@ -378,6 +400,25 @@ Zwróć TYLKO czysty JSON bez markdown:
                 </div>
               </div>
             </div>
+
+            {/* Analysis — co model zobaczył */}
+            {results.analysis && (
+              <>
+                <div style={s({ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6F7979", marginBottom: 10, marginTop: 28 })}>
+                  Co model zobaczył
+                </div>
+                <div style={s({ background: "#0d1514", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 4, padding: "14px 18px", marginBottom: 8 })}>
+                  {Object.entries(results.analysis).map(([key, val]) => (
+                    <div key={key} style={s({ display: "flex", gap: 12, marginBottom: 6, fontSize: 12 })}>
+                      <div style={s({ color: "#6F7979", minWidth: 140, flexShrink: 0 })}>{key.replace(/_/g, " ")}</div>
+                      <div style={s({ color: "#CACECF", lineHeight: 1.4 })}>
+                        {Array.isArray(val) ? val.join(" · ") : String(val)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
 
             {/* Violations */}
             {results.violations?.length > 0 && (
