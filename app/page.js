@@ -169,7 +169,10 @@ LOGO I WORDMARK:
   * Logo na jasnym tle (białym, szarym, jasnym) = Electric Green (#78FAAE) lub Emerald Green → PRAWIDŁOWE
   * Logo Electric Green na Electric Green tle = nieczytelne → naruszenie MEDIUM
   * Logo w kolorze szarym, srebrnym, złotym lub innym spoza palety = naruszenie MEDIUM
-- Prawidłowa pozycja logo: TYLKO prawy dolny róg lub prawa strona. Centrum góry, lewy górny róg, lewy dolny róg, centrum dołu — naruszenie LOW (-10 pkt). Użyj pola logo_position_valid: false jeśli pozycja jest nieprawidłowa.
+- Prawidłowa pozycja logo zależy od orientacji formatu:
+  * Format POZIOMY (landscape): TYLKO prawy dolny róg lub prawa strona = prawidłowe. Inne pozycje = naruszenie LOW (-10 pkt).
+  * Format PIONOWY (portrait, ratio ~1:2 lub 9:16): centrum dołu jest DOZWOLONE jeśli element "Let's get ŠKODA!" lub "Life gets ŠKODA" zajmuje całą szerokość formatu. To jest prawidłowa kompozycja dla formatów pionowych.
+  * Użyj pola logo_position_valid: false tylko jeśli pozycja jest faktycznie nieprawidłowa dla danego formatu.
 - Wordmark "ŠKODA" pisany caps to prawidłowy logotyp — NIE flaguj jako capslock.
 - Logo NIE MOŻE być zniekształcone, obrócone, rozciągane, z cieniem.
 
@@ -195,6 +198,7 @@ DOZWOLONE:
 
 TYPOGRAFIA:
 - Nazwa marki w copy: zawsze "Škoda" (z háčkiem). "SKODA" bez háčka w body copy — naruszenie MEDIUM.
+- WYJĄTEK KRYTYCZNY: Element graficzny sloganu "Let's get ŠKODA!" lub "Life gets ŠKODA" używa specjalnego fontu brandowego gdzie háček jest wbudowany w kształt litery S. NIE flaguj braku háčka w tym elemencie — to jest prawidłowy logotyp graficzny. Zasada háčka dotyczy TYLKO zwykłego tekstu copy, nie elementu sloganu graficznego.
 - Full caps w nagłówkach i body copy — naruszenie MEDIUM. Wyjątki: logotyp, nazwy modeli (iV, RS, 4x4).
 - DROP SHADOW pod tekstem — naruszenie MEDIUM (-25 pkt). Bardzo częsty błąd — dodaj silną rekomendację zmiany w polu suggestion.
 - Font szeryfowy lub handwriting — naruszenie HIGH.
@@ -265,7 +269,8 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
   "analysis": {
     "is_skoda_material": true/false,
     "logo_color": "opisz dokładnie kolor logo który widzisz",
-    "logo_position": "wybierz DOKŁADNIE jeden z: [lewy górny róg] / [centrum góry] / [prawy górny róg] / [lewy dolny róg] / [centrum dołu] / [prawy dolny róg] / [centrum]. Prawy dolny róg i prawa strona to JEDYNE prawidłowe pozycje. Centrum góry, lewy górny róg, lewy dolny róg = naruszenie LOW -10pkt",
+    "format_orientation": "poziomy (landscape, szerokość > wysokość) / pionowy (portrait, wysokość > szerokość) / kwadratowy",
+    "logo_position": "wybierz DOKŁADNIE jeden z: [lewy górny róg] / [centrum góry] / [prawy górny róg] / [lewy dolny róg] / [centrum dołu] / [prawy dolny róg] / [centrum]. Dla formatu poziomego: prawy dolny róg i prawa strona to jedyne prawidłowe pozycje. Dla formatu pionowego: centrum dołu jest dozwolone jeśli slogan/logo zajmuje całą szerokość.",
     "logo_position_valid": true/false,
     "background_colors": "wymień WSZYSTKIE kolory tła które widzisz — w tym smugi, gradienty, kolory dymu, kolory świateł",
     "tertiary_colors_present": "czy widzisz czerwony/niebieski/żółty/różowy/fioletowy jako dominujące elementy tła? tak/nie — jeśli tak, wymień które",
