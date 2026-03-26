@@ -169,7 +169,7 @@ LOGO I WORDMARK:
   * Logo na jasnym tle (białym, szarym, jasnym) = Electric Green (#78FAAE) lub Emerald Green → PRAWIDŁOWE
   * Logo Electric Green na Electric Green tle = nieczytelne → naruszenie MEDIUM
   * Logo w kolorze szarym, srebrnym, złotym lub innym spoza palety = naruszenie MEDIUM
-- Prawidłowa pozycja: prawa strona lub prawy dolny róg. Inna pozycja — naruszenie LOW (-10 pkt).
+- Prawidłowa pozycja logo: TYLKO prawy dolny róg lub prawa strona. Centrum góry, lewy górny róg, lewy dolny róg, centrum dołu — naruszenie LOW (-10 pkt). Użyj pola logo_position_valid: false jeśli pozycja jest nieprawidłowa.
 - Wordmark "ŠKODA" pisany caps to prawidłowy logotyp — NIE flaguj jako capslock.
 - Logo NIE MOŻE być zniekształcone, obrócone, rozciągane, z cieniem.
 
@@ -248,14 +248,16 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
   "analysis": {
     "is_skoda_material": true/false,
     "logo_color": "opisz dokładnie kolor logo który widzisz",
-    "logo_position": "opisz gdzie jest logo: lewy górny, prawy górny, prawy dolny, centrum itp.",
-    "background_colors": "wymień wszystkie kolory tła które widzisz",
-    "texts": ["wypisz każdy tekst który widzisz z dokładną kapitalizacją"],
-    "facets": "opisz czy są facety, ile, jaki kolor",
-    "photo_type": "naturalne zdjęcie / render studyjny / cyklorama",
-    "button_cta": "opisz button jeśli jest: kształt, kolor, tekst",
-    "eyecatcher": "opisz eyecatcher jeśli jest: kształt, tekst",
-    "foreign_brands": "wymień wszystkie obce marki lub logotypy które widzisz, lub 'brak'"
+    "logo_position": "wybierz DOKŁADNIE jeden z: [lewy górny róg] / [centrum góry] / [prawy górny róg] / [lewy dolny róg] / [centrum dołu] / [prawy dolny róg] / [centrum]. Prawy dolny róg i prawa strona to JEDYNE prawidłowe pozycje. Centrum góry, lewy górny róg, lewy dolny róg = naruszenie LOW -10pkt",
+    "logo_position_valid": true/false,
+    "background_colors": "wymień WSZYSTKIE kolory tła które widzisz — w tym smugi, gradienty, kolory dymu, kolory świateł",
+    "tertiary_colors_present": "czy widzisz czerwony/niebieski/żółty/różowy/fioletowy jako dominujące elementy tła? tak/nie — jeśli tak, wymień które",
+    "texts": ["wypisz KAŻDY tekst który widzisz z dokładną kapitalizacją — w tym disclaimer, copyright, adresy"],
+    "facets": "opisz czy są facety, ile, jaki kolor, czy są solid wypełnione czy wireframe/outline",
+    "photo_type": "naturalne zdjęcie z otoczeniem / render studyjny na gradientowym tle / render na białej cykloramie / render na szarej cykloramie",
+    "button_cta": "opisz button jeśli jest: kształt (pill/kwadrat/inny), kolor, tekst",
+    "eyecatcher": "opisz eyecatcher trapezowy jeśli jest: tekst, czy jest obok buttona CTA?",
+    "foreign_brands": "wymień WSZYSTKIE obce marki, logotypy, nazwy firm które widzisz — w tym małe napisy, lub napisz 'brak'"
   },
   "score": 0-100,
   "status": "OK|MINOR|MAJOR",
