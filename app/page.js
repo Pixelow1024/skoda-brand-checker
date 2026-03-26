@@ -195,6 +195,8 @@ DOZWOLONE:
 - "Life gets ŠKODA" + copy o życiu/odkrywaniu = prawidłowy format
 - Warianty w copy: "Życie nabiera Škody", "Lato nabiera Škody" = dozwolone jako copy ale NIE zastępują sloganu graficznego
 - "ŠKODA!" jako część sloganu graficznego = element wizualny, NIE flaguj jako capslock
+- "SKODA" bez háčka w elemencie graficznym sloganu "Let's get" lub "Life gets" = PRAWIDŁOWE. To jest specjalny font brandowy gdzie háček jest wbudowany w kształt litery S. NIGDY nie flaguj braku háčka w tym elemencie.
+- Slogan graficzny "Let's get ŠKODA!" lub "Life gets ŠKODA" nie podlega zasadzie háčka w copy — to jest logotyp, nie tekst.
 
 TYPOGRAFIA:
 - Nazwa marki w copy: zawsze "Škoda" (z háčkiem). "SKODA" bez háčka w body copy — naruszenie MEDIUM.
@@ -280,7 +282,7 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
     "button_cta": "opisz button jeśli jest: kształt (pill/kwadrat/inny), kolor, tekst",
     "eyecatcher": "opisz eyecatcher trapezowy jeśli jest: tekst, czy jest obok buttona CTA?",
     "foreign_brands": "wymień WSZYSTKIE obce marki, logotypy, nazwy firm które widzisz — w tym małe napisy, lub napisz 'brak'",
-    "lets_get_skoda_present": "tak/nie — czy na grafice widnieje napis 'Let's get ŠKODA!' lub 'Let's get Skoda!' (duży element graficzny z wordmarkiem Škody)",
+    "lets_get_skoda_present": "tak/nie — czy na grafice widnieje napis 'Let's get ŠKODA!' lub 'Let's get Skoda!' lub 'Let's get SKODA!' (duży element graficzny z wordmarkiem Škody). UWAGA: brak háčka w tym elemencie jest PRAWIDŁOWY — to specjalny font brandowy.",
     "life_gets_skoda_present": "tak/nie — czy na grafice widnieje napis 'Life gets ŠKODA' lub 'Life gets Skoda'",
     "lets_get_model_present": "tak/nie + jaki model — czy w copy jest nagłówek 'Let's get [nazwa modelu]!' np. 'Let's get Superb!', 'Let's get Fabia!'",
     "slogan_tilted": "tak/nie — czy slogan Let's get lub Life gets jest pochylony/pod kątem, czy napisany poziomo"
