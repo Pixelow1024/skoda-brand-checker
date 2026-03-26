@@ -188,8 +188,7 @@ Zasada działa w obie strony:
 REGUŁA DODATKOWA — LOW (-10 pkt):
 Jeśli jest "Let's get ŠKODA!" ale NIE MA wcześniej w copy nagłówka "Let's get [nazwa modelu]!" = naruszenie LOW.
 
-POCHYLENIE SLOGANU — LOW (-10 pkt):
-Slogan "Let's get ŠKODA!" lub "Life gets ŠKODA" powinien być pochylony/pod kątem. Jeśli poziomy = naruszenie LOW.
+
 
 DOZWOLONE:
 - "Let's get ŠKODA!" + "Let's get [model]!" = pełny prawidłowy format
@@ -246,7 +245,6 @@ HIGH (-45 pkt, status MAJOR):
 LOW (-10 pkt, status MINOR):
 - Logo nie po prawej stronie
 - "Let's get ŠKODA!" BEZ nagłówka "Let's get [model]!" w copy
-- Slogan "Let's get" lub "Life gets" napisany poziomo zamiast pochylony
 
 MEDIUM (-25 pkt, status MINOR):
 - Full caps w nagłówkach lub body copy (nie dotyczy logotypu i nazw modeli)
@@ -286,7 +284,7 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
     "lets_get_skoda_present": "tak/nie — czy na grafice widnieje napis 'Let's get ŠKODA!' lub 'Let's get Skoda!' lub 'Let's get SKODA!' (duży element graficzny z wordmarkiem Škody). UWAGA: brak háčka w tym elemencie jest PRAWIDŁOWY — to specjalny font brandowy.",
     "life_gets_skoda_present": "tak/nie — czy na grafice widnieje napis 'Life gets ŠKODA' lub 'Life gets Skoda'",
     "lets_get_model_present": "tak/nie + jaki model — czy w copy jest nagłówek 'Let's get [nazwa modelu]!' np. 'Let's get Superb!', 'Let's get Fabia!'",
-    "slogan_tilted": "tak/nie — czy slogan Let's get lub Life gets jest pochylony/pod kątem, czy napisany poziomo"
+    "slogan_tilted": "tak/nie — informacyjnie tylko, nie wpływa na scoring"
   },
   "score": 0-100,
   "status": "OK|MINOR|MAJOR",
