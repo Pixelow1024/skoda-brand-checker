@@ -173,12 +173,25 @@ LOGO I WORDMARK:
 - Wordmark "ŠKODA" pisany caps to prawidłowy logotyp — NIE flaguj jako capslock.
 - Logo NIE MOŻE być zniekształcone, obrócone, rozciągane, z cieniem.
 
-FORMAT "LET\'S GET ŠKODA":
-- Jeśli grafika używa logo "Let\'s get Škoda!" — MUSI być nagłówek "Let\'s get [nazwa modelu]!". Brak = naruszenie HIGH (-50 pkt).
-- "Life gets Škoda" — inny format, nie wymaga nagłówka z modelem.
-- Warianty: "Życie nabiera Škody", "Lato nabiera Škody" — dozwolone.
-- "ŠKODA!" obok "Let\'s get" lub "Life gets" — element wizualny sloganu, NIE flaguj.
-- "Let\'s get Octavia!", "Let\'s get Enyaq!" itd. — dozwolone warianty.
+FORMAT SLOGANÓW — ZASADY OBOWIĄZKOWE:
+
+REGUŁA GŁÓWNA — HIGH (-45 pkt):
+Logo Škoda MUSI zawsze towarzyszyć jednemu z dwóch sloganów:
+- "Let's get ŠKODA!" (duży element graficzny z wordmarkiem)
+- "Life gets ŠKODA" (duży element graficzny z wordmarkiem)
+Jeśli logo Škoda jest obecne BEZ żadnego z tych sloganów = naruszenie HIGH.
+
+REGUŁA DODATKOWA — LOW (-10 pkt):
+Jeśli jest "Let's get ŠKODA!" ale NIE MA wcześniej w copy nagłówka "Let's get [nazwa modelu]!" = naruszenie LOW.
+
+POCHYLENIE SLOGANU — LOW (-10 pkt):
+Slogan "Let's get ŠKODA!" lub "Life gets ŠKODA" powinien być pochylony/pod kątem. Jeśli poziomy = naruszenie LOW.
+
+DOZWOLONE:
+- "Let's get ŠKODA!" + "Let's get [model]!" = pełny prawidłowy format
+- "Life gets ŠKODA" + copy o życiu/odkrywaniu = prawidłowy format
+- Warianty w copy: "Życie nabiera Škody", "Lato nabiera Škody" = dozwolone jako copy ale NIE zastępują sloganu graficznego
+- "ŠKODA!" jako część sloganu graficznego = element wizualny, NIE flaguj jako capslock
 
 TYPOGRAFIA:
 - Nazwa marki w copy: zawsze "Škoda" (z háčkiem). "SKODA" bez háčka w body copy — naruszenie MEDIUM.
@@ -220,8 +233,13 @@ HIGH (-45 pkt, status MAJOR):
 - Obce marki obecne ale marginalne (małe logo dealera, drobny co-branding)
 - Font szeryfowy lub handwriting
 - Button CTA i eyecatcher trapezowy w tym samym materiale
-- Format "Let\'s get Škoda" bez nagłówka "Let\'s get [model]!"
+- Logo Škoda BEZ towarzyszącego sloganu "Let's get ŠKODA!" lub "Life gets ŠKODA" — obowiązkowe
 - Kolory tertiary (czerwony, niebieski, żółty) jako dominujące tło lub element brandowy
+
+LOW (-10 pkt, status MINOR):
+- Logo nie po prawej stronie
+- "Let's get ŠKODA!" BEZ nagłówka "Let's get [model]!" w copy
+- Slogan "Let's get" lub "Life gets" napisany poziomo zamiast pochylony
 
 MEDIUM (-25 pkt, status MINOR):
 - Full caps w nagłówkach lub body copy (nie dotyczy logotypu i nazw modeli)
@@ -229,8 +247,7 @@ MEDIUM (-25 pkt, status MINOR):
 - Logo w złym kolorze (nie Electric Green #78FAAE ani biały)
 - Drop shadow pod tekstem — SILNA REKOMENDACJA ZMIANY, bardzo częsty błąd obniżający jakość
 
-LOW (-10 pkt, status MINOR):
-- Logo nie po prawej stronie (nie prawy dolny róg ani prawa strona)
+
 
 INFO (0 pkt odejmowania — tylko rekomendacja w polu recommendation):
 - Render studyjny/cyklorama zamiast naturalnego zdjęcia — zaznacz w rekomendacji że preferowane jest naturalne zdjęcie z otoczeniem
@@ -257,7 +274,11 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
     "photo_type": "naturalne zdjęcie z otoczeniem / render studyjny na gradientowym tle / render na białej cykloramie / render na szarej cykloramie",
     "button_cta": "opisz button jeśli jest: kształt (pill/kwadrat/inny), kolor, tekst",
     "eyecatcher": "opisz eyecatcher trapezowy jeśli jest: tekst, czy jest obok buttona CTA?",
-    "foreign_brands": "wymień WSZYSTKIE obce marki, logotypy, nazwy firm które widzisz — w tym małe napisy, lub napisz 'brak'"
+    "foreign_brands": "wymień WSZYSTKIE obce marki, logotypy, nazwy firm które widzisz — w tym małe napisy, lub napisz 'brak'",
+    "lets_get_skoda_present": "tak/nie — czy na grafice widnieje napis 'Let's get ŠKODA!' lub 'Let's get Skoda!' (duży element graficzny z wordmarkiem Škody)",
+    "life_gets_skoda_present": "tak/nie — czy na grafice widnieje napis 'Life gets ŠKODA' lub 'Life gets Skoda'",
+    "lets_get_model_present": "tak/nie + jaki model — czy w copy jest nagłówek 'Let's get [nazwa modelu]!' np. 'Let's get Superb!', 'Let's get Fabia!'",
+    "slogan_tilted": "tak/nie — czy slogan Let's get lub Life gets jest pochylony/pod kątem, czy napisany poziomo"
   },
   "score": 0-100,
   "status": "OK|MINOR|MAJOR",
