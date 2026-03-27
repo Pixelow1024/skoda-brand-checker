@@ -343,7 +343,7 @@ DOZWOLONE:
 TYPOGRAFIA:
 - Nazwa marki w copy: zawsze "Škoda" (z háčkiem). "SKODA" bez háčka w body copy — naruszenie MEDIUM. UWAGA: zasada háčka dotyczy WYŁĄCZNIE nazwy marki "Škoda" — nigdy nazw modeli (Octavia, Enyaq, Karoq, Superb, Fabia itd.).
 - WYJĄTEK KRYTYCZNY: Element graficzny sloganu "Let's get ŠKODA!" lub "Life gets ŠKODA" używa specjalnego fontu brandowego gdzie háček jest wbudowany w kształt litery S. NIE flaguj braku háčka w tym elemencie — to jest prawidłowy logotyp graficzny. Zasada háčka dotyczy TYLKO zwykłego tekstu copy, nie elementu sloganu graficznego.
-- Full caps w nagłówkach i body copy — naruszenie MEDIUM. Wyjątki: logotyp, nazwy modeli (iV, RS, 4x4).
+- Full caps w nagłówkach i body copy — naruszenie MEDIUM. Wyjątki: logotyp Škoda, element graficzny "Let's get ŠKODA!" (ŠKODA! w caps to prawidłowy logotyp graficzny — ABSOLUTNY ZAKAZ flagowania), element graficzny "Life gets ŠKODA", nazwy modeli (iV, RS, 4x4), skróty techniczne (CO2, kW, km/h).
 - DROP SHADOW pod tekstem — naruszenie MEDIUM (-25 pkt). Bardzo częsty błąd — dodaj silną rekomendację zmiany w polu suggestion.
 - Font szeryfowy lub handwriting — naruszenie HIGH.
 - Nazwy modeli: "iV", "RS", "4x4", "Enyaq", "Octavia", "Karoq" itd. — prawidłowe, NIE flaguj.
@@ -403,7 +403,7 @@ LOW (-10 pkt, status MINOR):
 - "Let's get ŠKODA!" BEZ nagłówka "Let's get [model]!" w copy
 
 MEDIUM (-25 pkt, status MINOR):
-- Full caps w nagłówkach lub body copy (nie dotyczy logotypu i nazw modeli)
+- Full caps w nagłówkach lub body copy (nie dotyczy logotypu i nazw modeli). UWAGA: "ŠKODA!" w elemencie graficznym "Let's get ŠKODA!" to prawidłowy logotyp — NIGDY nie flaguj jako capslock.
 - "SKODA" bez háčka w treści copy
 - Logo w złym kolorze (nie Electric Green #78FAAE ani biały)
 - Drop shadow pod tekstem — SILNA REKOMENDACJA ZMIANY, bardzo częsty błąd obniżający jakość
