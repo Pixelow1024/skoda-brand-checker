@@ -203,8 +203,8 @@ function checkSkodaHacek(parsed) {
     return /life.{0,10}gets|let.{0,5}s.{0,5}get|logotyp/.test(surrounding);
   };
 
-  // Szukaj "Skoda" lub "SKODA" bez háčka
-  const pattern = /\bS[Kk][Oo][Dd][Aa]\b/g;
+  // Szukaj "Skoda" lub "SKODA" bez háčka (nie "Škoda" z háčkiem)
+  const pattern = /(?<![Šš])S[Kk][Oo][Dd][Aa](?![a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ])/g;
   let match;
   const found = [];
 
