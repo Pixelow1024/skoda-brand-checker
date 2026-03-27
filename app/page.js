@@ -310,9 +310,9 @@ DETEKCJA EYECATCHERA:
 FORMAT TOF (Top of Funnel):
 - Sygnały: brak eyecatchera + rounded button CTA + szerokie zdjęcie z otoczeniem
 - Logo OBOWIĄZKOWE: "Life gets ŠKODA"
-- "Let's get ŠKODA!" zamiast "Life gets ŠKODA" = naruszenie HIGH
+- "Let's get ŠKODA!" zamiast "Life gets ŠKODA" = naruszenie HIGH — "Let's get ŠKODA!" jest zarezerwowane WYŁĄCZNIE dla formatu BOF
 - Brak obu logotypów = naruszenie HIGH
-- Rekomendacja: "Dodaj logotyp 'Life gets ŠKODA' — format TOF wymaga tego elementu"
+- Rekomendacja: "Dodaj logotyp 'Life gets ŠKODA' — format TOF wymaga tego elementu. 'Let's get ŠKODA!' jest zarezerwowane dla formatu BOF z eyecatcherem i nagłówkiem 'Let's get [model]'"
 
 FORMAT MOF (Middle of Funnel):
 - Sygnały: eyecatcher obecny + nazwa modelu w nagłówku BEZ "Let's get" (np. "Škoda Octavia", "Nowa Octavia")
@@ -396,6 +396,7 @@ HIGH (-45 pkt, status MAJOR):
 - Kolory tertiary (czerwony, niebieski, żółty) jako dominujące tło lub element brandowy
 - MIESZANIE FORMATÓW: nagłówek "Let's get [model]" + logotyp "Life gets ŠKODA" w materiale bez eyecatchera (TOF z sygnałem BOF) — zawsze HIGH, bez wyjątków
 - MIESZANIE FORMATÓW: nagłówek "Let's get [model]" + logotyp "Life gets ŠKODA" w materiale z eyecatcherem (MOF z sygnałem BOF) — zawsze HIGH, bez wyjątków
+- BŁĘDNY LOGOTYP DLA TOF: logotyp "Let's get ŠKODA!" w materiale TOF (brak eyecatchera + rounded button) — zawsze HIGH. "Let's get ŠKODA!" jest zarezerwowane WYŁĄCZNIE dla BOF.
 
 LOW (-10 pkt, status MINOR):
 - Logo nie po prawej stronie
