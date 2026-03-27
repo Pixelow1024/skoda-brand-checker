@@ -298,35 +298,44 @@ LOGO I WORDMARK:
 
 FORMAT SLOGANÓW — ZASADY OBOWIĄZKOWE:
 
-Istnieją DWA wzajemnie wykluczające się formaty. Mieszanie ich = naruszenie HIGH (-45 pkt).
+KROK 0 — WYKRYJ FORMAT MATERIAŁU:
 
-FORMAT A — "Let's get":
-- Nagłówek copy zawiera "Let's get [model]!" (np. "Let's get Octavia!", "Let's get Superb!")
-- Logotyp graficzny MUSI być "Let's get ŠKODA!" — obowiązkowo, bez wyjątków
-- Jeśli nagłówek to "Let's get [model]" a logotyp to "Life gets ŠKODA" = naruszenie HIGH (mieszanie formatów)
+Zanim ocenisz logotyp, określ format na podstawie dwóch sygnałów: eyecatcher i nagłówek.
 
-FORMAT B — "Life gets":
-- Logotyp graficzny to "Life gets ŠKODA"
-- Nagłówek copy NIE MOŻE zawierać "Let's get [model]!"
-- Jeśli logotyp to "Life gets ŠKODA" a nagłówek zawiera "Let's get [model]" = naruszenie HIGH (mieszanie formatów)
+DETEKCJA EYECATCHERA:
+- Eyecatcher = ścięty/trapezowy boks z tekstem (benefit produktowy, cena, finansowanie, wyprzedaż)
+- Jeśli NIE JESTEŚ pewny czy widzisz eyecatcher → przyjmij że go NIE MA
+- Wpisz wynik w polu analysis.eyecatcher
 
-REGUŁA OGÓLNA — HIGH (-45 pkt):
-- Jeśli NIE MA ani "Let's get ŠKODA!" ani "Life gets ŠKODA" ani tradycyjnego wordmarku Škody = naruszenie HIGH (brak identyfikacji marki)
-- Jeśli jest "Let's get ŠKODA!" lub "Life gets ŠKODA" = identyfikacja zapewniona, NIE wymagaj dodatkowego logo
+FORMAT TOF (Top of Funnel):
+- Sygnały: brak eyecatchera + rounded button CTA + szerokie zdjęcie z otoczeniem
+- Logo OBOWIĄZKOWE: "Life gets ŠKODA"
+- "Let's get ŠKODA!" zamiast "Life gets ŠKODA" = naruszenie HIGH
+- Brak obu logotypów = naruszenie HIGH
+- Rekomendacja: "Dodaj logotyp 'Life gets ŠKODA' — format TOF wymaga tego elementu"
 
-REGUŁA DODATKOWA — LOW (-10 pkt):
-Jeśli jest "Let's get ŠKODA!" ale NIE MA w copy nagłówka "Let's get [nazwa modelu]!" = naruszenie LOW.
+FORMAT MOF (Middle of Funnel):
+- Sygnały: eyecatcher obecny + nazwa modelu w nagłówku BEZ "Let's get" (np. "Škoda Octavia", "Nowa Octavia")
+- Logo OBOWIĄZKOWE: "Life gets ŠKODA"
+- "Let's get ŠKODA!" zamiast "Life gets ŠKODA" = naruszenie HIGH
+- Brak obu logotypów = naruszenie HIGH
+- Rekomendacja: "Dodaj logotyp 'Life gets ŠKODA' — format MOF wymaga tego elementu"
 
+FORMAT BOF (Bottom of Funnel):
+- Sygnały: eyecatcher obecny + "Let's get [model]!" w nagłówku
+- Logo OBOWIĄZKOWE: "Let's get ŠKODA!"
+- "Life gets ŠKODA" zamiast "Let's get ŠKODA!" = naruszenie HIGH
+- Brak obu logotypów = naruszenie HIGH
+- Rekomendacja: "Zamień 'Life gets ŠKODA' na 'Let's get ŠKODA!' — format BOF wymaga tego logotypu"
 
+KADROWANIE AUTA (ciasne vs szerokie) = INFO, 0 punktów — zaznacz tylko w recommendation.
 
 DOZWOLONE:
-- "Let's get [model]!" w nagłówku + "Let's get ŠKODA!" jako logotyp = prawidłowy Format A
-- "Life gets ŠKODA" jako logotyp + copy bez "Let's get [model]" = prawidłowy Format B
+- TOF: brak eyecatchera + rounded CTA + "Life gets ŠKODA" = prawidłowe
+- MOF: eyecatcher + nazwa modelu w nagłówku + "Life gets ŠKODA" = prawidłowe
+- BOF: eyecatcher + "Let's get [model]!" + "Let's get ŠKODA!" = prawidłowe
 - Warianty w copy: "Życie nabiera Škody", "Lato nabiera Škody" = dozwolone jako copy ale NIE zastępują logotypu graficznego
 
-NIEDOZWOLONE (naruszenie HIGH):
-- "Let's get [model]!" w nagłówku + "Life gets ŠKODA" jako logotyp = mieszanie formatów
-- "Life gets ŠKODA" jako logotyp + "Let's get [model]!" w nagłówku = mieszanie formatów
 - "ŠKODA!" jako część sloganu graficznego = element wizualny, NIE flaguj jako capslock
 - "SKODA" bez háčka w elemencie graficznym sloganu "Let's get" lub "Life gets" = PRAWIDŁOWE. To jest specjalny font brandowy gdzie háček jest wbudowany w kształt litery S. NIGDY nie flaguj braku háčka w tym elemencie.
 - Slogan graficzny "Let's get ŠKODA!" lub "Life gets ŠKODA" nie podlega zasadzie háčka w copy — to jest logotyp, nie tekst.
@@ -350,9 +359,9 @@ FACETY:
 - Flaguj tylko: 0°/90°, nakładające się, z cieniem, lub Emerald + Electric razem.
 
 BUTTON CTA VS EYECATCHER:
-- Button CTA: zaokrąglony (pill), Electric Green, tekst call-to-action (Sprawdź, Odkryj, itp.).
-- Eyecatcher: trapezowy element (ścięty z jednej strony), komunikat ofertowy (cena, benefit).
-- ZAKAZ łączenia: button CTA i eyecatcher trapezowy w tym samym materiale — naruszenie HIGH.
+- Button CTA: zaokrąglony (pill), Electric Green, tekst call-to-action (Sprawdź, Odkryj, Poznaj itp.) = sygnał formatu TOF
+- Eyecatcher: trapezowy/ścięty boks z komunikatem ofertowym (cena, benefit, finansowanie, wyprzedaż) = sygnał formatu MOF lub BOF
+- ZAKAZ łączenia: button CTA (pill) i eyecatcher trapezowy w tym samym materiale — naruszenie HIGH.
 
 CO-BRANDING I OBCE MARKI:
 - Obca marka dominująca (logo lub nazwa ≥ wordmark Škody) — BLOCKER, score 0.
@@ -423,7 +432,8 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
     "facets": "opisz czy są facety, ile, jaki kolor, czy są solid wypełnione czy wireframe/outline",
     "photo_type": "naturalne zdjęcie z otoczeniem / render studyjny na gradientowym tle / render na białej cykloramie / render na szarej cykloramie",
     "button_cta": "opisz button jeśli jest: kształt (pill/kwadrat/inny), kolor, tekst",
-    "eyecatcher": "opisz eyecatcher trapezowy jeśli jest: tekst, czy jest obok buttona CTA?",
+    "eyecatcher": "opisz eyecatcher trapezowy jeśli jest: tekst, czy jest obok buttona CTA? Jeśli nie masz pewności czy to eyecatcher — napisz 'brak'. Wynik detekcji eyecatchera decyduje o formacie: brak=TOF, obecny+nazwa modelu w nagłówku=MOF, obecny+Let's get [model] w nagłówku=BOF",
+    "detected_format": "TOF / MOF / BOF — wpisz wykryty format materiału na podstawie eyecatchera i nagłówka",
     "foreign_brands": "wymień WSZYSTKIE obce marki, logotypy, nazwy firm które widzisz — w tym małe napisy, lub napisz 'brak'",
     "lets_get_skoda_present": "tak/nie — czy na grafice widnieje napis 'Let's get ŠKODA!' lub 'Let's get Skoda!' lub 'Let's get SKODA!' (duży element graficzny z wordmarkiem Škody). UWAGA: brak háčka w tym elemencie jest PRAWIDŁOWY — to specjalny font brandowy.",
     "life_gets_skoda_present": "tak/nie — czy na grafice widnieje napis 'Life gets ŠKODA' lub 'Life gets Skoda'",
