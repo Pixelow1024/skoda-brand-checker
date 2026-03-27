@@ -68,6 +68,120 @@ const SEV = {
   low:    { color: "#78FAAE", bg: "rgba(120,250,174,0.08)",    label: "NISKA",   border: "rgba(120,250,174,0.3)" },
 };
 
+// ─── Post-processing: deterministyczny filtr fałszywych alarmów ──────────────
+//
+// Każdy wpis definiuje jeden znany false positive.
+// test(v) → true = usuń to naruszenie z wyników przed pokazaniem użytkownikowi.
+// Dodawanie nowych filtrów: dopisz kolejny obiekt do tablicy.
+//
+const FALSE_ALARM_FILTERS = [
+  {
+    id: "hacek_slogan_graficzny",
+    reason: "Háček w sloganie graficznym — prawidłowy font brandowy (háček wbudowany w kształt litery S)",
+    test: (v) => {
+      const h = `${v.rule || ""} ${v.observation || ""} ${v.suggestion || ""}`.toLowerCase();
+      const isHacek   = /há[cč]ek|haček|diacryt|diakryt|accent|znak diakr|znak diakr/.test(h);
+      const isSlogan  = /let.?s.?get|life.?gets|slogan.{0,15}graficz|font.{0,10}brand|brand.{0,10}font|element.{0,15}graficz|logotyp/.test(h);
+      const isMissing = /brak.{0,25}(há[cč]ek|haček|znaku|diakryt|litery|ogonka)/.test(h);
+      return isHacek && (isSlogan || isMissing);
+    },
+  },
+  {
+    id: "biale_logo_ciemne_tlo",
+    reason: "Białe logo na ciemnym tle — prawidłowe użycie zgodnie z brandbook",
+    test: (v) => {
+      const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
+      return /bia[łl][ae]?.{0,25}logo/.test(h) && /ciemn|emerald|czarn|dark/.test(h);
+    },
+  },
+  {
+    id: "logo_centrum_dolu_portrait",
+    reason: "Centrum dołu w formacie pionowym — dozwolona pozycja dla sloganu brandowego",
+    test: (v) => {
+      const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
+      return /centrum.{0,12}do[łl]u|center.{0,12}bottom/.test(h);
+    },
+  },
+  {
+    id: "kolor_auta",
+    reason: "Kolor samochodu na zdjęciu — nie jest kolorem brandowym, nie podlega ocenie",
+    test: (v) => {
+      const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
+      return /kolor.{0,25}(auto|samoch|pojazd|car\b|vehicle)/.test(h)
+          || /(auto|samoch|pojazd|car\b).{0,25}kolor/.test(h);
+    },
+  },
+  {
+    id: "disclaimer_prawny",
+    reason: "Disclaimer prawny w małym druku — dozwolony element materiału reklamowego",
+    test: (v) => {
+      const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
+      return /disclaimer|drobny.{0,12}druk|ma[łl]y.{0,12}druk|drobnodruk|legal.{0,12}text|prawny/.test(h);
+    },
+  },
+];
+
+const SEV_PENALTY = { high: 45, medium: 25, low: 10 };
+
+/**
+ * Czyści wyniki modelu z fałszywych alarmów.
+ * Działa niezależnie od promptu — jako ostatnia linia obrony.
+ */
+function filterFalseAlarms(parsed) {
+  if (!Array.isArray(parsed.violations)) return parsed;
+
+  const removedReasons = [];
+
+  parsed.violations = parsed.violations.filter((v) => {
+    // Istniejąca logika: is_violation === false → do compliant
+    if (v.is_violation === false) {
+      removedReasons.push(
+        v.rule + (v.observation ? ": " + v.observation.substring(0, 70) : "")
+      );
+      return false;
+    }
+    // Nowa logika: znane wzorce fałszywych alarmów
+    for (const filter of FALSE_ALARM_FILTERS) {
+      if (filter.test(v)) {
+        removedReasons.push(filter.reason);
+        return false;
+      }
+    }
+    return true;
+  });
+
+  if (removedReasons.length > 0) {
+    parsed.compliant_elements = [
+      ...(parsed.compliant_elements || []),
+      ...removedReasons,
+    ];
+  }
+
+  // Przelicz score tylko jeśli nie ma BLOCKERa (score=0, MAJOR z modelu)
+  const wasBlocker =
+    parsed.score === 0 &&
+    parsed.status === "MAJOR" &&
+    parsed.violations.some((v) => v.severity === "high");
+
+  if (!wasBlocker) {
+    if (parsed.violations.length === 0) {
+      parsed.score = 100;
+      parsed.status = "OK";
+    } else {
+      const penalty = parsed.violations.reduce(
+        (sum, v) => sum + (SEV_PENALTY[v.severity] || 0),
+        0
+      );
+      parsed.score = Math.max(10, 100 - penalty);
+      parsed.status =
+        parsed.score >= 90 ? "OK" : parsed.score >= 60 ? "MINOR" : "MAJOR";
+    }
+  }
+
+  return parsed;
+}
+// ─────────────────────────────────────────────────────────────────────────────
+
 export default function Home() {
   const [imageBase64, setImageBase64] = useState(null);
   const [imageMediaType, setImageMediaType] = useState(null);
@@ -298,7 +412,8 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
   },
   "score": 0-100,
   "status": "OK|MINOR|MAJOR",
-  "violations": [{"rule": "...", "observation": "opis oparty na tym co napisałeś w analysis", "severity": "low|medium|high", "suggestion": "..."}],
+  "violations": [{"is_violation": true, "rule": "...", "observation": "...", "severity": "low|medium|high", "suggestion": "..."}],
+WAŻNE: Pole "is_violation" wypełniasz PIERWSZE, przed napisaniem czegokolwiek innego w tym wpisie. Jeśli is_violation=false — ten wpis NIE trafia do violations, idzie do compliant_elements. Model parsujący JSON zignoruje wpisy z is_violation=false w violations i przeniesie je automatycznie.
   "compliant_elements": ["..."],
   "recommendation": "..."
 }`,
@@ -315,7 +430,8 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
       if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.error?.message || `HTTP ${res.status}`); }
       const data = await res.json();
       let raw = data.content.map(c => c.text || "").join("").replace(/```json|```/g, "").trim();
-      setResults(JSON.parse(raw));
+      const parsed = filterFalseAlarms(JSON.parse(raw));
+      setResults(parsed);
     } catch (err) {
       clearInterval(msgInterval.current);
       setError(err.message);
