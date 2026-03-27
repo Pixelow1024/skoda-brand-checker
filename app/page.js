@@ -117,7 +117,15 @@ const FALSE_ALARM_FILTERS = [
     },
   },
   {
-    id: "disclaimer_prawny",
+    id: "capslock_liczby_jubileusz",
+    reason: "Capslock na liczbach, cenach, roku lub elemencie jubileuszowym — nie podlega zasadzie mixed case",
+    test: (v) => {
+      const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
+      const isCapsRule = /caps|capslock|full.?cap|wielk|kapital/.test(h);
+      const isNumberOrJubilee = /\d{4}|\d+\s*(zł|pln|eur|tys|lat\b)|130.?lat|roczni|jubile|anniver/.test(h);
+      return isCapsRule && isNumberOrJubilee;
+    },
+  },
     reason: "Disclaimer prawny w małym druku — dozwolony element materiału reklamowego",
     test: (v) => {
       const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
@@ -217,10 +225,14 @@ function checkSkodaHacek(parsed) {
 
   if (found.length === 0) return parsed;
 
-  // Sprawdź czy model już to flaguje
+  // Sprawdź czy model już to flaguje jako brak háčka w nazwie marki (nie w logotypie)
   const alreadyFlagged = (parsed.violations || []).some((v) => {
     const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
-    return /há[cč]ek|haček/.test(h) && /skoda|škoda/.test(h) && !/model|octav|enyaq|karoq|superb|fabia|scala|kodiaq|kamiq/.test(h);
+    const isHacekViolation = /há[cč]ek|haček/.test(h);
+    const isAboutBrandName = /skoda|škoda/.test(h);
+    const isAboutModel = /octav|enyaq|karoq|superb|fabia|scala|kodiaq|kamiq/.test(h);
+    const isAboutLogo = /logotyp|life.?gets|let.?s.?get|slogan|element.?graficz/.test(h);
+    return isHacekViolation && isAboutBrandName && !isAboutModel && !isAboutLogo;
   });
 
   if (alreadyFlagged) return parsed;
@@ -403,7 +415,7 @@ DOZWOLONE:
 TYPOGRAFIA:
 - Nazwa marki w copy: zawsze "Škoda" (z háčkiem). "SKODA" bez háčka w body copy — naruszenie MEDIUM. UWAGA: zasada háčka dotyczy WYŁĄCZNIE nazwy marki "Škoda" — nigdy nazw modeli (Octavia, Enyaq, Karoq, Superb, Fabia itd.).
 - WYJĄTEK KRYTYCZNY: Element graficzny sloganu "Let's get ŠKODA!" lub "Life gets ŠKODA" używa specjalnego fontu brandowego gdzie háček jest wbudowany w kształt litery S. NIE flaguj braku háčka w tym elemencie — to jest prawidłowy logotyp graficzny. Zasada háčka dotyczy TYLKO zwykłego tekstu copy, nie elementu sloganu graficznego.
-- Full caps w nagłówkach i body copy — naruszenie MEDIUM. Wyjątki: logotyp Škoda, element graficzny "Let's get ŠKODA!" (ŠKODA! w caps to prawidłowy logotyp graficzny — ABSOLUTNY ZAKAZ flagowania), element graficzny "Life gets ŠKODA", nazwy modeli (iV, RS, 4x4), skróty techniczne (CO2, kW, km/h).
+- Full caps w nagłówkach i body copy — naruszenie MEDIUM. Wyjątki: logotyp Škoda, element graficzny "Let's get ŠKODA!" (ŠKODA! w caps to prawidłowy logotyp graficzny — ABSOLUTNY ZAKAZ flagowania), element graficzny "Life gets ŠKODA", nazwy modeli (iV, RS, 4x4), skróty techniczne (CO2, kW, km/h), liczby i ceny (18 000 zł, 2025), elementy jubileuszowe i rocznicowe (130 LAT, 130 lat itp.).
 - DROP SHADOW pod tekstem — naruszenie MEDIUM (-25 pkt). Bardzo częsty błąd — dodaj silną rekomendację zmiany w polu suggestion.
 - Font szeryfowy lub handwriting — naruszenie HIGH.
 - Nazwy modeli: "iV", "RS", "4x4", "Enyaq", "Octavia", "Karoq" itd. — prawidłowe, NIE flaguj.
@@ -463,7 +475,7 @@ LOW (-10 pkt, status MINOR):
 - "Let's get ŠKODA!" BEZ nagłówka "Let's get [model]!" w copy
 
 MEDIUM (-25 pkt, status MINOR):
-- Full caps w nagłówkach lub body copy (nie dotyczy logotypu i nazw modeli). UWAGA: "ŠKODA!" w elemencie graficznym "Let's get ŠKODA!" to prawidłowy logotyp — NIGDY nie flaguj jako capslock.
+- Full caps w nagłówkach lub body copy (nie dotyczy logotypu i nazw modeli). UWAGA: "ŠKODA!" w elemencie graficznym "Let's get ŠKODA!" to prawidłowy logotyp — NIGDY nie flaguj jako capslock. Nie flaguj też: liczb (2025, 18 000 zł), skrótów (CO2, kW), elementów jubileuszowych (130 LAT), nazw modeli.
 - "SKODA" bez háčka w treści copy
 - Logo w złym kolorze (nie Electric Green #78FAAE ani biały)
 - Drop shadow pod tekstem — SILNA REKOMENDACJA ZMIANY, bardzo częsty błąd obniżający jakość
