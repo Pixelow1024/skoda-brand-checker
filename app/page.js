@@ -394,6 +394,8 @@ HIGH (-45 pkt, status MAJOR):
 - Button CTA i eyecatcher trapezowy w tym samym materiale
 - Logo Škoda BEZ towarzyszącego sloganu "Let's get ŠKODA!" lub "Life gets ŠKODA" — obowiązkowe
 - Kolory tertiary (czerwony, niebieski, żółty) jako dominujące tło lub element brandowy
+- MIESZANIE FORMATÓW: nagłówek "Let's get [model]" + logotyp "Life gets ŠKODA" w materiale bez eyecatchera (TOF z sygnałem BOF) — zawsze HIGH, bez wyjątków
+- MIESZANIE FORMATÓW: nagłówek "Let's get [model]" + logotyp "Life gets ŠKODA" w materiale z eyecatcherem (MOF z sygnałem BOF) — zawsze HIGH, bez wyjątków
 
 LOW (-10 pkt, status MINOR):
 - Logo nie po prawej stronie
