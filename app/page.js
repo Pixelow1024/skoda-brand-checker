@@ -410,6 +410,12 @@ MEDIUM (-25 pkt, status MINOR):
 INFO (0 pkt odejmowania — tylko rekomendacja w polu recommendation):
 - Render studyjny/cyklorama zamiast naturalnego zdjęcia — zaznacz w rekomendacji że preferowane jest naturalne zdjęcie z otoczeniem
 
+SPRAWDZANIE JĘZYKA POLSKIEGO:
+Przeczytaj uważnie KAŻDY polski tekst widoczny na grafice (nagłówki, body copy, CTA, disclaimery).
+Sprawdź literówki i błędy ortograficzne. Błędy wpisz do pola "language_errors" — NIE do violations, NIE odejmują punktów.
+Przykłady: "Polse" → "Polsce", "samochodów" → ok, "najczęściej" → ok.
+Nie sprawdzaj: elementów graficznych logotypu (Let's get ŠKODA!, Life gets ŠKODA), nazw modeli, anglojęzycznych elementów copy.
+
 OBLICZANIE SCORE:
 - Jeśli jest BLOCKER → score 0, koniec
 - 0 naruszeń → score 100, status OK
@@ -445,6 +451,7 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
   "violations": [{"is_violation": true, "rule": "...", "observation": "...", "severity": "low|medium|high", "suggestion": "..."}],
 WAŻNE: Pole "is_violation" wypełniasz PIERWSZE, przed napisaniem czegokolwiek innego w tym wpisie. Jeśli is_violation=false — ten wpis NIE trafia do violations, idzie do compliant_elements. Model parsujący JSON zignoruje wpisy z is_violation=false w violations i przeniesie je automatycznie.
   "compliant_elements": ["..."],
+  "language_errors": [{"text": "błędny tekst który widzisz na grafice", "correction": "poprawna forma", "type": "literówka|ortografia"}],
   "recommendation": "..."
 }`,
           messages: [{
@@ -623,6 +630,28 @@ WAŻNE: Pole "is_violation" wypełniasz PIERWSZE, przed napisaniem czegokolwiek 
                     </div>
                   ))}
                 </div>
+              </>
+            )}
+
+            {/* Language errors */}
+            {results.language_errors?.length > 0 && (
+              <>
+                <div style={s({ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6F7979", marginBottom: 10, marginTop: 28 })}>
+                  Błędy językowe
+                </div>
+                {results.language_errors.map((e, i) => (
+                  <div key={i} style={s({ background: "#111918", borderRadius: 4, padding: "14px 18px", marginBottom: 8, borderLeft: "3px solid #F78046", display: "flex", gap: 14, alignItems: "flex-start" })}>
+                    <div style={s({ background: "rgba(247,128,70,0.10)", color: "#F78046", fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", padding: "3px 8px", borderRadius: 2, flexShrink: 0, marginTop: 2 })}>
+                      {e.type || "literówka"}
+                    </div>
+                    <div style={s({ flex: 1 })}>
+                      <div style={s({ fontSize: 13, color: "#fff", lineHeight: 1.45 })}>
+                        <span style={s({ textDecoration: "line-through", color: "#FF6B6B", marginRight: 8 })}>{e.text}</span>
+                        <span style={s({ color: "#78FAAE" })}>→ {e.correction}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </>
             )}
 
