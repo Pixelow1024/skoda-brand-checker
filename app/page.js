@@ -412,8 +412,9 @@ INFO (0 pkt odejmowania — tylko rekomendacja w polu recommendation):
 
 SPRAWDZANIE JĘZYKA POLSKIEGO:
 Przeczytaj uważnie KAŻDY polski tekst widoczny na grafice (nagłówki, body copy, CTA, disclaimery).
+WAŻNE: Porównaj to co DOSŁOWNIE widzisz piksel po pikselu z poprawną polszczyzną — nie to co "powinno" tam być.
 Sprawdź literówki i błędy ortograficzne. Błędy wpisz do pola "language_errors" — NIE do violations, NIE odejmują punktów.
-Przykłady: "Polse" → "Polsce", "samochodów" → ok, "najczęściej" → ok.
+Przykłady: jeśli widzisz "Polse" → błąd, poprawka "Polsce". Jeśli widzisz "samochoduw" → błąd, poprawka "samochodów".
 Nie sprawdzaj: elementów graficznych logotypu (Let's get ŠKODA!, Life gets ŠKODA), nazw modeli, anglojęzycznych elementów copy.
 
 OBLICZANIE SCORE:
@@ -434,7 +435,7 @@ Zwróć TYLKO czysty JSON bez markdown. NAJPIERW wypełnij pole "analysis" — t
     "logo_position_valid": true/false,
     "background_colors": "wymień WSZYSTKIE kolory tła które widzisz — w tym smugi, gradienty, kolory dymu, kolory świateł",
     "tertiary_colors_present": "czy widzisz czerwony/niebieski/żółty/różowy/fioletowy jako dominujące elementy tła? tak/nie — jeśli tak, wymień które",
-    "texts": ["wypisz KAŻDY tekst który widzisz z dokładną kapitalizacją — w tym disclaimer, copyright, adresy"],
+    "texts": ["PRZEPISZ DOSŁOWNIE każdy tekst znak po znaku — NIE poprawiaj literówek, NIE interpretuj, NIE uzupełniaj. Jeśli widzisz 'Polse' wpisz 'Polse', nie 'Polsce'. Jeśli widzisz 'samochoduw' wpisz 'samochoduw'. Zachowaj dokładną kapitalizację. Uwzględnij każdy napis: nagłówki, body copy, CTA, disclaimery, copyright, adresy."],
     "facets": "opisz czy są facety, ile, jaki kolor, czy są solid wypełnione czy wireframe/outline",
     "photo_type": "naturalne zdjęcie z otoczeniem / render studyjny na gradientowym tle / render na białej cykloramie / render na szarej cykloramie",
     "button_cta": "opisz button jeśli jest: kształt (pill/kwadrat/inny), kolor, tekst",
