@@ -185,6 +185,66 @@ function filterFalseAlarms(parsed) {
 
   return parsed;
 }
+
+/**
+ * Deterministyczne sprawdzanie háčka w nazwie marki Škoda.
+ * Działa na polu analysis.texts — niezależnie od tego co model ocenił.
+ * Szuka "Skoda" lub "SKODA" (bez háčka) w polskim copy, pomija logotypy graficzne.
+ */
+function checkSkodaHacek(parsed) {
+  const texts = parsed?.analysis?.texts;
+  if (!texts) return parsed;
+
+  const allText = Array.isArray(texts) ? texts.join(" ") : String(texts);
+
+  // Wzorce logotypów graficznych które pomijamy
+  const isLogoContext = (match, fullText, index) => {
+    const surrounding = fullText.substring(Math.max(0, index - 20), index + 30).toLowerCase();
+    return /life.{0,10}gets|let.{0,5}s.{0,5}get|enyaq|logotyp/.test(surrounding);
+  };
+
+  // Szukaj "Skoda" lub "SKODA" bez háčka
+  const pattern = /\bS[Kk][Oo][Dd][Aa]\b/g;
+  let match;
+  const found = [];
+
+  while ((match = pattern.exec(allText)) !== null) {
+    // Pomiń jeśli to kontekst logotypu graficznego
+    if (!isLogoContext(match[0], allText, match.index)) {
+      found.push(match[0]);
+    }
+  }
+
+  if (found.length === 0) return parsed;
+
+  // Sprawdź czy model już to flaguje
+  const alreadyFlagged = (parsed.violations || []).some((v) => {
+    const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
+    return /há[cč]ek|haček/.test(h) && /skoda|škoda/.test(h) && !/model|octav|enyaq|karoq|superb|fabia|scala|kodiaq|kamiq/.test(h);
+  });
+
+  if (alreadyFlagged) return parsed;
+
+  // Dodaj naruszenie MEDIUM
+  const uniqueFound = [...new Set(found)];
+  parsed.violations = [
+    ...(parsed.violations || []),
+    {
+      is_violation: true,
+      rule: "Typography — háček w nazwie marki",
+      observation: `Nazwa marki zapisana bez háčka: ${uniqueFound.join(", ")} zamiast 'Škoda'`,
+      severity: "medium",
+      suggestion: "Popraw pisownię nazwy marki na 'Škoda' z háčkiem we wszystkich wystąpieniach w copy",
+    },
+  ];
+
+  // Przelicz score
+  const penalty = parsed.violations.reduce((sum, v) => sum + (SEV_PENALTY[v.severity] || 0), 0);
+  parsed.score = Math.max(10, 100 - penalty);
+  parsed.status = parsed.score >= 90 ? "OK" : parsed.score >= 60 ? "MINOR" : "MAJOR";
+
+  return parsed;
+}
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -471,7 +531,7 @@ WAŻNE: Pole "is_violation" wypełniasz PIERWSZE, przed napisaniem czegokolwiek 
       if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.error?.message || `HTTP ${res.status}`); }
       const data = await res.json();
       let raw = data.content.map(c => c.text || "").join("").replace(/```json|```/g, "").trim();
-      const parsed = filterFalseAlarms(JSON.parse(raw));
+      const parsed = checkSkodaHacek(filterFalseAlarms(JSON.parse(raw)));
       setResults(parsed);
     } catch (err) {
       clearInterval(msgInterval.current);
