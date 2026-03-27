@@ -200,7 +200,7 @@ function checkSkodaHacek(parsed) {
   // Wzorce logotypów graficznych które pomijamy
   const isLogoContext = (match, fullText, index) => {
     const surrounding = fullText.substring(Math.max(0, index - 20), index + 30).toLowerCase();
-    return /life.{0,10}gets|let.{0,5}s.{0,5}get|enyaq|logotyp/.test(surrounding);
+    return /life.{0,10}gets|let.{0,5}s.{0,5}get|logotyp/.test(surrounding);
   };
 
   // Szukaj "Skoda" lub "SKODA" bez háčka
