@@ -298,22 +298,35 @@ LOGO I WORDMARK:
 
 FORMAT SLOGANÓW — ZASADY OBOWIĄZKOWE:
 
-REGUŁA GŁÓWNA — HIGH (-45 pkt):
-Element graficzny "Let's get ŠKODA!" lub "Life gets ŠKODA" JEST logo Škody w tym formacie — pełni funkcję identyfikacji marki i zastępuje tradycyjny wordmark. Jeśli ten element jest obecny, NIE flaguj braku oddzielnego wordmarku/logo Škody.
+Istnieją DWA wzajemnie wykluczające się formaty. Mieszanie ich = naruszenie HIGH (-45 pkt).
 
-Zasada działa w obie strony:
-- Jeśli jest "Let's get ŠKODA!" lub "Life gets ŠKODA" = identyfikacja marki jest zapewniona, NIE wymagaj dodatkowego logo
-- Jeśli NIE MA ani "Let's get ŠKODA!" ani "Life gets ŠKODA" ani tradycyjnego wordmarku Škody = naruszenie HIGH
+FORMAT A — "Let's get":
+- Nagłówek copy zawiera "Let's get [model]!" (np. "Let's get Octavia!", "Let's get Superb!")
+- Logotyp graficzny MUSI być "Let's get ŠKODA!" — obowiązkowo, bez wyjątków
+- Jeśli nagłówek to "Let's get [model]" a logotyp to "Life gets ŠKODA" = naruszenie HIGH (mieszanie formatów)
+
+FORMAT B — "Life gets":
+- Logotyp graficzny to "Life gets ŠKODA"
+- Nagłówek copy NIE MOŻE zawierać "Let's get [model]!"
+- Jeśli logotyp to "Life gets ŠKODA" a nagłówek zawiera "Let's get [model]" = naruszenie HIGH (mieszanie formatów)
+
+REGUŁA OGÓLNA — HIGH (-45 pkt):
+- Jeśli NIE MA ani "Let's get ŠKODA!" ani "Life gets ŠKODA" ani tradycyjnego wordmarku Škody = naruszenie HIGH (brak identyfikacji marki)
+- Jeśli jest "Let's get ŠKODA!" lub "Life gets ŠKODA" = identyfikacja zapewniona, NIE wymagaj dodatkowego logo
 
 REGUŁA DODATKOWA — LOW (-10 pkt):
-Jeśli jest "Let's get ŠKODA!" ale NIE MA wcześniej w copy nagłówka "Let's get [nazwa modelu]!" = naruszenie LOW.
+Jeśli jest "Let's get ŠKODA!" ale NIE MA w copy nagłówka "Let's get [nazwa modelu]!" = naruszenie LOW.
 
 
 
 DOZWOLONE:
-- "Let's get ŠKODA!" + "Let's get [model]!" = pełny prawidłowy format
-- "Life gets ŠKODA" + copy o życiu/odkrywaniu = prawidłowy format
-- Warianty w copy: "Życie nabiera Škody", "Lato nabiera Škody" = dozwolone jako copy ale NIE zastępują sloganu graficznego
+- "Let's get [model]!" w nagłówku + "Let's get ŠKODA!" jako logotyp = prawidłowy Format A
+- "Life gets ŠKODA" jako logotyp + copy bez "Let's get [model]" = prawidłowy Format B
+- Warianty w copy: "Życie nabiera Škody", "Lato nabiera Škody" = dozwolone jako copy ale NIE zastępują logotypu graficznego
+
+NIEDOZWOLONE (naruszenie HIGH):
+- "Let's get [model]!" w nagłówku + "Life gets ŠKODA" jako logotyp = mieszanie formatów
+- "Life gets ŠKODA" jako logotyp + "Let's get [model]!" w nagłówku = mieszanie formatów
 - "ŠKODA!" jako część sloganu graficznego = element wizualny, NIE flaguj jako capslock
 - "SKODA" bez háčka w elemencie graficznym sloganu "Let's get" lub "Life gets" = PRAWIDŁOWE. To jest specjalny font brandowy gdzie háček jest wbudowany w kształt litery S. NIGDY nie flaguj braku háčka w tym elemencie.
 - Slogan graficzny "Let's get ŠKODA!" lub "Life gets ŠKODA" nie podlega zasadzie háčka w copy — to jest logotyp, nie tekst.
