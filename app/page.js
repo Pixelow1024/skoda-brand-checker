@@ -341,7 +341,7 @@ DOZWOLONE:
 - Slogan graficzny "Let's get ŠKODA!" lub "Life gets ŠKODA" nie podlega zasadzie háčka w copy — to jest logotyp, nie tekst.
 
 TYPOGRAFIA:
-- Nazwa marki w copy: zawsze "Škoda" (z háčkiem). "SKODA" bez háčka w body copy — naruszenie MEDIUM.
+- Nazwa marki w copy: zawsze "Škoda" (z háčkiem). "SKODA" bez háčka w body copy — naruszenie MEDIUM. UWAGA: zasada háčka dotyczy WYŁĄCZNIE nazwy marki "Škoda" — nigdy nazw modeli (Octavia, Enyaq, Karoq, Superb, Fabia itd.).
 - WYJĄTEK KRYTYCZNY: Element graficzny sloganu "Let's get ŠKODA!" lub "Life gets ŠKODA" używa specjalnego fontu brandowego gdzie háček jest wbudowany w kształt litery S. NIE flaguj braku háčka w tym elemencie — to jest prawidłowy logotyp graficzny. Zasada háčka dotyczy TYLKO zwykłego tekstu copy, nie elementu sloganu graficznego.
 - Full caps w nagłówkach i body copy — naruszenie MEDIUM. Wyjątki: logotyp, nazwy modeli (iV, RS, 4x4).
 - DROP SHADOW pod tekstem — naruszenie MEDIUM (-25 pkt). Bardzo częsty błąd — dodaj silną rekomendację zmiany w polu suggestion.
@@ -376,7 +376,7 @@ ABSOLUTNA CZARNA LISTA — te rzeczy NIGDY nie mogą trafić do violations, bez 
 - Brak oddzielnego wordmarku gdy obecny jest slogan "Let's get ŠKODA!" — PRAWIDŁOWE, nie flaguj
 - Kolor samochodu na zdjęciu (czerwony, niebieski itd.) — kolor auta to nie kolor brandowy, nie flaguj
 - Kolory tła fotografii (tulipany, pola, niebo, krajobraz, kwiaty, otoczenie) — to są kolory zdjęcia, NIE elementy brandowe, absolutny zakaz flagowania jako naruszenia kolorów tertiary
-- Disclaimery prawne w małym druku — zawsze dozwolone, nie flaguj
+- Brak háčka w nazwie modelu (Octavia, Enyaq, Karoq, Superb, Fabia, Scala, Kodiaq, Kamiq itd.) — zasada háčka dotyczy TYLKO nazwy marki "Škoda", nigdy nazw modeli
 - Skróty chemiczne i techniczne (CO2, kW, km/h) pisane caps — nie są naruszeniem zasady capslock
 
 WYTYCZNE BRANDBOOK:
