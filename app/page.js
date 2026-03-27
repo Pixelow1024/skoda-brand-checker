@@ -126,6 +126,8 @@ const FALSE_ALARM_FILTERS = [
       return isCapsRule && isNumberOrJubilee;
     },
   },
+  {
+    id: "disclaimer_prawny",
     reason: "Disclaimer prawny w małym druku — dozwolony element materiału reklamowego",
     test: (v) => {
       const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
