@@ -259,9 +259,12 @@ function checkSkodaHacek(parsed) {
     const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
     const isHacekViolation = /há[cč]ek|haček/.test(h);
     const isAboutBrandName = /skoda|škoda/.test(h);
-    const isAboutModel = /octav|enyaq|karoq|superb|fabia|scala|kodiaq|kamiq/.test(h);
+    // isAboutModel tylko jeśli model jest wymieniony BEZ nazwy marki obok
+    // np. "brak háčka w nazwie modelu Enyaq" vs "Skoda Enyaq bez háčka" (tu jest też marka)
+    const isAboutModelOnly = /octav|enyaq|karoq|superb|fabia|scala|kodiaq|kamiq/.test(h)
+      && !/skoda.{0,20}(enyaq|octav|karoq|superb|fabia|scala|kodiaq|kamiq)/.test(h);
     const isAboutLogo = /logotyp|life.?gets|let.?s.?get|slogan|element.?graficz/.test(h);
-    return isHacekViolation && isAboutBrandName && !isAboutModel && !isAboutLogo;
+    return isHacekViolation && isAboutBrandName && !isAboutModelOnly && !isAboutLogo;
   });
 
   if (alreadyFlagged) return parsed;
@@ -710,7 +713,7 @@ WAŻNE: Pole "is_violation" wypełniasz PIERWSZE, przed napisaniem czegokolwiek 
                   const sv = SEV[v.severity] || SEV.low;
                   return (
                     <div key={i} style={s({ background: "#111918", borderRadius: 4, padding: "14px 18px", marginBottom: 8, borderLeft: `3px solid ${sv.border}`, display: "flex", gap: 14 })}>
-                      <div style={s({ background: sv.bg, color: sv.color, fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", padding: "3px 8px", borderRadius: 2, flexShrink: 0, alignSelf: "flex-start", marginTop: 2 })}>
+                      <div style={s({ background: sv.bg, color: sv.color, fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", padding: "3px 8px", borderRadius: 2, flexShrink: 0, alignSelf: "flex-start", marginTop: 2, width: 58, textAlign: "center" })}>
                         {sv.label}
                       </div>
                       <div style={s({ flex: 1 })}>
