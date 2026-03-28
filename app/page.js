@@ -134,6 +134,21 @@ const FALSE_ALARM_FILTERS = [
       return /disclaimer|drobny.{0,12}druk|ma[łl]y.{0,12}druk|drobnodruk|legal.{0,12}text|prawny/.test(h);
     },
   },
+  {
+    id: "capslock_false_alarm_mixed_case",
+    reason: "Tekst zawiera małe litery — nie jest full caps, fałszywy alarm capslock",
+    test: (v) => {
+      const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
+      const isCapsViolation = /caps|capslock|full.?cap|wielk|kapital/.test(h);
+      if (!isCapsViolation) return false;
+      // Wyciągnij cytowany tekst z observation (apostrofy lub cudzysłowy)
+      const quoted = (v.observation || "").match(/['''„"«]([^'''„"«»]{3,})['''""»]/);
+      if (!quoted) return false;
+      const text = quoted[1];
+      // Jeśli cytowany tekst zawiera małe litery — to nie jest full caps
+      return /[a-ząćęłńóśźż]/.test(text);
+    },
+  },
 ];
 
 const SEV_PENALTY = { high: 45, medium: 25, low: 10 };
@@ -477,7 +492,7 @@ LOW (-10 pkt, status MINOR):
 - "Let's get ŠKODA!" BEZ nagłówka "Let's get [model]!" w copy
 
 MEDIUM (-25 pkt, status MINOR):
-- Full caps w nagłówkach lub body copy (nie dotyczy logotypu i nazw modeli). UWAGA: "ŠKODA!" w elemencie graficznym "Let's get ŠKODA!" to prawidłowy logotyp — NIGDY nie flaguj jako capslock. Nie flaguj też: liczb (2025, 18 000 zł), skrótów (CO2, kW), elementów jubileuszowych (130 LAT), nazw modeli.
+- Full caps w nagłówkach lub body copy (nie dotyczy logotypu i nazw modeli). UWAGA: "ŠKODA!" w elemencie graficznym "Let's get ŠKODA!" to prawidłowy logotyp — NIGDY nie flaguj jako capslock. Nie flaguj też: liczb (2025, 18 000 zł), skrótów (CO2, kW), elementów jubileuszowych (130 LAT), nazw modeli. WERYFIKACJA OBOWIĄZKOWA: przed zapisaniem naruszenia capslock przepisz dosłownie flagowany tekst do pola observation w cudzysłowie. Jeśli przepisany tekst zawiera jakąkolwiek małą literę — to NIE jest full caps, usuń naruszenie.
 - "SKODA" bez háčka w treści copy
 - Logo w złym kolorze (nie Electric Green #78FAAE ani biały)
 - Drop shadow pod tekstem — SILNA REKOMENDACJA ZMIANY, bardzo częsty błąd obniżający jakość
