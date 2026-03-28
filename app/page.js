@@ -445,7 +445,8 @@ DOZWOLONE:
 - Slogan graficzny "Let's get ŠKODA!" lub "Life gets ŠKODA" nie podlega zasadzie háčka w copy — to jest logotyp, nie tekst.
 
 TYPOGRAFIA:
-- Nazwa marki w copy: zawsze "Škoda" (z háčkiem). "SKODA" bez háčka w body copy — naruszenie MEDIUM. UWAGA: zasada háčka dotyczy WYŁĄCZNIE nazwy marki "Škoda" — nigdy nazw modeli (Octavia, Enyaq, Karoq, Superb, Fabia itd.).
+- Nazwa marki w copy: zawsze "Škoda" (z háčkiem). "Skoda" bez háčka w body copy lub nagłówku — naruszenie MEDIUM. UWAGA: zasada háčka dotyczy WYŁĄCZNIE nazwy marki "Škoda" — nigdy nazw modeli (Octavia, Enyaq, Karoq, Superb, Fabia itd.).
+- ROZRÓŻNIENIE LOGOTYP vs COPY — OBOWIĄZKOWE: Zanim zaflagrujesz brak háčka, określ czy "Skoda/SKODA" to: (a) standalone wordmark graficzny — element brandowy w rogu lub jako wyodrębniony logotyp, inny krój/styl niż body copy → NIE flaguj, logotyp nie ma háčka z założenia; (b) tekst w body copy, nagłówku lub sloganie pisanym zwykłym fontem → flaguj brak háčka jako naruszenie MEDIUM. Kluczowe pytanie: czy to jest element graficzny marki czy zwykły tekst? Jeśli to logotyp/wordmark — zawsze prawidłowe bez háčka.
 - WYJĄTEK KRYTYCZNY: Element graficzny sloganu "Let's get ŠKODA!" lub "Life gets ŠKODA" używa specjalnego fontu brandowego gdzie háček jest wbudowany w kształt litery S. NIE flaguj braku háčka w tym elemencie — to jest prawidłowy logotyp graficzny. Zasada háčka dotyczy TYLKO zwykłego tekstu copy, nie elementu sloganu graficznego.
 - WYJĄTEK KRYTYCZNY 2: Standalone wordmark "SKODA" lub "ŠKODA" jako samodzielny element graficzny w dowolnym rogu materiału (logotyp bez towarzyszącego sloganu) = PRAWIDŁOWE z punktu widzenia háčka. NIE flaguj braku háčka w standalone wordmarku — to jest logotyp brandowy użyty graficznie, nie nazwa marki pisana w body copy. Zasada háčka dotyczy WYŁĄCZNIE nazwy "Škoda" pisanej jako zwykły tekst w nagłówkach i body copy.
 - Full caps w nagłówkach i body copy — naruszenie MEDIUM. Wyjątki: logotyp Škoda, element graficzny "Let's get ŠKODA!" (ŠKODA! w caps to prawidłowy logotyp graficzny — ABSOLUTNY ZAKAZ flagowania), element graficzny "Life gets ŠKODA", nazwy modeli (iV, RS, 4x4), skróty techniczne (CO2, kW, km/h), liczby i ceny (18 000 zł, 2025), elementy jubileuszowe i rocznicowe (130 LAT, 130 lat itp.).
@@ -475,7 +476,7 @@ CO-BRANDING I OBCE MARKI:
 
 ABSOLUTNA CZARNA LISTA — te rzeczy NIGDY nie mogą trafić do violations, bez żadnych wyjątków:
 - Háček w elemencie graficznym "Let's get ŠKODA!" lub "Life gets ŠKODA" — ABSOLUTNY ZAKAZ flagowania. Ten element używa specjalnego fontu brandowego. Nieważne co widzisz — nie flaguj háčka w sloganie graficznym.
-- Brak háčka w standalone wordmarku graficznym "SKODA" w dowolnym rogu materiału (prawy dolny, prawy górny, lewy dolny, lewy górny) — ABSOLUTNY ZAKAZ flagowania. Wordmark w rogu to logotyp brandowy użyty graficznie, nie tekst copy. Zasada háčka dotyczy WYŁĄCZNIE nazwy marki pisanej jako zwykły tekst w body copy lub nagłówkach.
+- Brak háčka w standalone wordmarku graficznym ŠKODA/SKODA — ABSOLUTNY ZAKAZ flagowania. Logotyp brandowy Škody nigdy nie ma háčka z założenia — to celowy design fontu. Dotyczy wordmarku w każdym rogu i każdej pozycji gdy jest użyty jako element identyfikacji marki a nie jako tekst copy.
 - Kolor logo białe na ciemnym tle — PRAWIDŁOWE, nie flaguj
 - Kolor logo Electric Green na jasnym tle — PRAWIDŁOWE, nie flaguj
 - Pozycja "centrum dołu" w formacie pionowym — PRAWIDŁOWE, nie flaguj
@@ -577,7 +578,7 @@ WAŻNE: Pole "is_violation" wypełniasz PIERWSZE, przed napisaniem czegokolwiek 
       if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.error?.message || `HTTP ${res.status}`); }
       const data = await res.json();
       let raw = data.content.map(c => c.text || "").join("").replace(/```json|```/g, "").trim();
-      const parsed = checkSkodaHacek(filterFalseAlarms(JSON.parse(raw)));
+      const parsed = filterFalseAlarms(JSON.parse(raw));
       setResults(parsed);
     } catch (err) {
       clearInterval(msgInterval.current);
