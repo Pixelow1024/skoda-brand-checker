@@ -447,7 +447,7 @@ ABSOLUTNA CZARNA LISTA — te rzeczy NIGDY nie mogą trafić do violations, bez 
 - Kolor logo białe na ciemnym tle — PRAWIDŁOWE, nie flaguj
 - Kolor logo Electric Green na jasnym tle — PRAWIDŁOWE, nie flaguj
 - Pozycja "centrum dołu" w formacie pionowym — PRAWIDŁOWE, nie flaguj
-- Brak oddzielnego wordmarku gdy obecny jest slogan "Let's get ŠKODA!" — PRAWIDŁOWE, nie flaguj
+- Brak oddzielnego wordmarku "ŠKODA" gdy obecny jest slogan "Let's get ŠKODA!" lub "Life gets ŠKODA" — PRAWIDŁOWE, nie flaguj. Te slogany graficzne SĄ kompletnym logotypem kampanii — oddzielny wordmark nie jest wymagany ani oczekiwany.
 - Kolor samochodu na zdjęciu (czerwony, niebieski itd.) — kolor auta to nie kolor brandowy, nie flaguj
 - Kolory tła fotografii (tulipany, pola, niebo, krajobraz, kwiaty, otoczenie) — to są kolory zdjęcia, NIE elementy brandowe, absolutny zakaz flagowania jako naruszenia kolorów tertiary
 - Brak háčka w nazwie modelu (Octavia, Enyaq, Karoq, Superb, Fabia, Scala, Kodiaq, Kamiq itd.) — zasada háčka dotyczy TYLKO nazwy marki "Škoda", nigdy nazw modeli
@@ -466,7 +466,7 @@ HIGH (-45 pkt, status MAJOR):
 - Obce marki obecne ale marginalne (małe logo dealera, drobny co-branding)
 - Font szeryfowy lub handwriting
 - Button CTA i eyecatcher trapezowy w tym samym materiale
-- Logo Škoda BEZ towarzyszącego sloganu "Let's get ŠKODA!" lub "Life gets ŠKODA" — obowiązkowe
+- Brak OBU elementów logotypu kampanii: ani "Life gets ŠKODA" ani "Let's get ŠKODA!" nie są obecne — naruszenie HIGH. UWAGA: logotypem kampanii jest WYŁĄCZNIE pełna forma "Life gets ŠKODA" (TOF/MOF) lub "Let's get ŠKODA!" (BOF) jako jeden nierozerwalny element graficzny. Sam wordmark "ŠKODA" bez poprzedzających słów "Life gets" lub "Let's get" NIE jest wystarczającym logotypem — ale jego obecność bez sloganu NIE jest naruszeniem jeśli slogan graficzny jest obecny.
 - Kolory tertiary (czerwony, niebieski, żółty) jako dominujące tło lub element brandowy
 - MIESZANIE FORMATÓW: nagłówek "Let's get [model]" + logotyp "Life gets ŠKODA" w materiale bez eyecatchera (TOF z sygnałem BOF) — zawsze HIGH, bez wyjątków
 - MIESZANIE FORMATÓW: nagłówek "Let's get [model]" + logotyp "Life gets ŠKODA" w materiale z eyecatcherem (MOF z sygnałem BOF) — zawsze HIGH, bez wyjątków
