@@ -80,9 +80,10 @@ const FALSE_ALARM_FILTERS = [
     reason: "Háček w sloganie graficznym — prawidłowy font brandowy (háček wbudowany w kształt litery S)",
     test: (v) => {
       const h = `${v.rule || ""} ${v.observation || ""} ${v.suggestion || ""}`.toLowerCase();
-      const isHacek   = /há[cč]ek|haček|diacryt|diakryt|accent|znak diakr|znak diakr/.test(h);
+      const isHacek   = /há[cč]ek|haček|diacryt|diakryt|accent|znak diakr/.test(h);
       const isSlogan  = /let.?s.?get|life.?gets|slogan.{0,15}graficz|font.{0,10}brand|brand.{0,10}font|element.{0,15}graficz|logotyp/.test(h);
-      const isMissing = /brak.{0,25}(há[cč]ek|haček|znaku|diakryt|litery|ogonka)/.test(h);
+      // isMissing tylko jeśli kontekst wyraźnie wskazuje na logotyp graficzny, nie body copy
+      const isMissing = /brak.{0,25}(há[cč]ek|haček|znaku|diakryt|litery|ogonka).{0,40}(slogan|logotyp|element.{0,10}graficz|let.?s.?get|life.?gets)/.test(h);
       return isHacek && (isSlogan || isMissing);
     },
   },
@@ -243,6 +244,11 @@ function checkSkodaHacek(parsed) {
 
   if (found.length === 0) return parsed;
 
+  // Próg bezpieczeństwa: pojedyncze wystąpienie może być błędem OCR modelu
+  // Flaguj tylko jeśli ta sama forma bez háčka pojawia się 2+ razy LUB 2+ różne formy
+  const uniqueFound = [...new Set(found)];
+  if (found.length < 2 && uniqueFound.length < 2) return parsed;
+
   // Sprawdź czy model już to flaguje jako brak háčka w nazwie marki (nie w logotypie)
   const alreadyFlagged = (parsed.violations || []).some((v) => {
     const h = `${v.rule || ""} ${v.observation || ""}`.toLowerCase();
@@ -256,7 +262,6 @@ function checkSkodaHacek(parsed) {
   if (alreadyFlagged) return parsed;
 
   // Dodaj naruszenie MEDIUM
-  const uniqueFound = [...new Set(found)];
   parsed.violations = [
     ...(parsed.violations || []),
     {
@@ -339,7 +344,7 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
-          max_tokens: 1500,
+          max_tokens: 2500,
           system: `Jesteś ekspertem audytorem materiałów reklamowych Škoda Polska. Oceniasz polskie materiały marketingowe pod kątem zgodności z Škoda Brand Guidelines 2024.
 
 KROK 1 — ZANIM COKOLWIEK OCENISZ, OPISZ CO WIDZISZ:
@@ -428,7 +433,7 @@ DOZWOLONE:
 
 - "ŠKODA!" jako część sloganu graficznego = element wizualny, NIE flaguj jako capslock
 - "SKODA" bez háčka w elemencie graficznym sloganu "Let's get" lub "Life gets" = PRAWIDŁOWE. To jest specjalny font brandowy gdzie háček jest wbudowany w kształt litery S. NIGDY nie flaguj braku háčka w tym elemencie.
-- Standalone wordmark graficzny "SKODA" lub "ŠKODA" w rogu materiału (prawy dolny, prawy górny) = PRAWIDŁOWE — to jest logotyp brandowy, nie tekst copy. NIGDY nie flaguj braku háčka w standalone wordmarku graficznym w rogu.
+- Standalone wordmark graficzny "SKODA" lub "ŠKODA" w dowolnym rogu materiału (prawy dolny, prawy górny, lewy dolny, lewy górny) = PRAWIDŁOWE — to jest logotyp brandowy, nie tekst copy. NIGDY nie flaguj braku háčka w standalone wordmarku graficznym w rogu.
 - Slogan graficzny "Let's get ŠKODA!" lub "Life gets ŠKODA" nie podlega zasadzie háčka w copy — to jest logotyp, nie tekst.
 
 TYPOGRAFIA:
@@ -487,13 +492,13 @@ HIGH (-45 pkt, status MAJOR):
 - Button CTA i eyecatcher trapezowy w tym samym materiale
 - Brak OBU elementów logotypu kampanii: ani "Life gets ŠKODA" ani "Let's get ŠKODA!" nie są obecne — naruszenie HIGH. UWAGA: logotypem kampanii jest WYŁĄCZNIE pełna forma "Life gets ŠKODA" (TOF/MOF) lub "Let's get ŠKODA!" (BOF) jako jeden nierozerwalny element graficzny. Sam wordmark "ŠKODA" bez poprzedzających słów "Life gets" lub "Let's get" NIE jest wystarczającym logotypem — ale jego obecność bez sloganu NIE jest naruszeniem jeśli slogan graficzny jest obecny.
 - Kolory tertiary (czerwony, niebieski, żółty) jako dominujące tło lub element brandowy
-- MIESZANIE FORMATÓW: nagłówek "Let's get [model]" + logotyp "Life gets ŠKODA" w materiale bez eyecatchera (TOF z sygnałem BOF) — zawsze HIGH, bez wyjątków
-- MIESZANIE FORMATÓW: nagłówek "Let's get [model]" + logotyp "Life gets ŠKODA" w materiale z eyecatcherem (MOF z sygnałem BOF) — zawsze HIGH, bez wyjątków
+- MIESZANIE FORMATÓW: nagłówek "Let's get [model]" + logotyp "Life gets ŠKODA" w materiale bez eyecatchera (TOF z sygnałem BOF) — zawsze HIGH, bez wyjątków. UWAGA: dotyczy WYŁĄCZNIE nagłówka w formule "Let's get [nazwa modelu]" — nagłówki kampanijne (np. "Cała Polska w Octavii", "Nowa Škoda Enyaq") NIE są sygnałem BOF.
+- MIESZANIE FORMATÓW: nagłówek "Let's get [model]" + logotyp "Life gets ŠKODA" w materiale z eyecatcherem (MOF z sygnałem BOF) — zawsze HIGH, bez wyjątków. UWAGA: dotyczy WYŁĄCZNIE nagłówka w formule "Let's get [nazwa modelu]".
 - BŁĘDNY LOGOTYP DLA TOF: logotyp "Let's get ŠKODA!" w materiale TOF (brak eyecatchera + rounded button) — zawsze HIGH. "Let's get ŠKODA!" jest zarezerwowane WYŁĄCZNIE dla BOF.
 
 LOW (-10 pkt, status MINOR):
-- Logo nie po prawej stronie
-- "Let's get ŠKODA!" BEZ nagłówka "Let's get [model]!" w copy
+- Logo nie po prawej stronie (dotyczy formatu poziomego)
+- "Let's get ŠKODA!" BEZ nagłówka "Let's get [model]!" w copy — dotyczy WYŁĄCZNIE formatu BOF. W TOF i MOF logotyp "Life gets ŠKODA" jest prawidłowy bez nagłówka "Let's get [model]".
 
 MEDIUM (-25 pkt, status MINOR):
 - Full caps w nagłówkach lub body copy (nie dotyczy logotypu i nazw modeli). UWAGA: "ŠKODA!" w elemencie graficznym "Let's get ŠKODA!" to prawidłowy logotyp — NIGDY nie flaguj jako capslock. Nie flaguj też: liczb (2025, 18 000 zł), skrótów (CO2, kW), elementów jubileuszowych (130 LAT), nazw modeli. WERYFIKACJA OBOWIĄZKOWA: przed zapisaniem naruszenia capslock przepisz dosłownie flagowany tekst do pola observation w cudzysłowie. Jeśli przepisany tekst zawiera jakąkolwiek małą literę — to NIE jest full caps, usuń naruszenie.
