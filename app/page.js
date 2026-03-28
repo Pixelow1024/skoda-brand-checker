@@ -228,8 +228,9 @@ function checkSkodaHacek(parsed) {
     return /life.{0,10}gets|let.{0,5}s.{0,5}get|logotyp|wordmark|(prawy|lewy|górny|dolny|gorny).{0,15}(r[oó]g)|logo.{0,15}r[oó]g|r[oó]g.{0,15}logo/.test(surrounding);
   };
 
-  // Szukaj "Skoda" lub "SKODA" bez háčka (nie "Škoda" z háčkiem)
-  const pattern = /(?<![Šš])S[Kk][Oo][Dd][Aa](?![a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ])/g;
+  // Szukaj "Skoda" lub "SKODA" bez háčka (nie "Škoda" z háčkiem) — wszystkie formy odmiany
+  // Skoda, Skody, Skodą, Skodę, Skodzie, SKODA, SKODY itp.
+  const pattern = /(?<![Šš])S[Kk][Oo][Dd][a-zA-Z\u00C0-\u017E]{1,5}(?![a-zA-Z\u00C0-\u017E])/g;
   let match;
   const found = [];
 
