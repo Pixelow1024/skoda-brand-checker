@@ -244,10 +244,15 @@ function checkSkodaHacek(parsed) {
 
   if (found.length === 0) return parsed;
 
-  // Próg bezpieczeństwa: pojedyncze wystąpienie może być błędem OCR modelu
-  // Flaguj tylko jeśli ta sama forma bez háčka pojawia się 2+ razy LUB 2+ różne formy
-  const uniqueFound = [...new Set(found)];
-  if (found.length < 2 && uniqueFound.length < 2) return parsed;
+  // Filtruj tylko rozpoznane formy odmiany — redukuje false alarmy z błędów OCR
+  // Akceptujemy: Skoda, Skody, Skodą, Skodę, Skodzie, Scode, SKODA, SKODY itp.
+  // Odrzucamy: losowe ciągi znaków które regex mógł złapać przez błąd OCR
+  const knownForms = found.filter(f =>
+    /^[Ss][Kk][Oo][Dd]([Aa][a-z\u00C0-\u017E]{0,3}|[Yy]|[Zz][Ii][Ee]|[Ii][Ee]|[Ąą]|[Ęę])$/i.test(f)
+  );
+  if (knownForms.length === 0) return parsed;
+
+  const uniqueFound = [...new Set(knownForms)];
 
   // Sprawdź czy model już to flaguje jako brak háčka w nazwie marki (nie w logotypie)
   const alreadyFlagged = (parsed.violations || []).some((v) => {
