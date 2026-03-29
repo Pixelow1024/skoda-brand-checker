@@ -472,9 +472,11 @@ BUTTON CTA VS EYECATCHER:
 - ZAKAZ łączenia: button CTA (pill) i eyecatcher trapezowy w tym samym materiale — naruszenie HIGH.
 
 CO-BRANDING I OBCE MARKI:
-- Obca marka dominująca (logo lub nazwa ≥ wordmark Škody) — BLOCKER, score 0.
-- Obca marka obecna ale marginalna (małe logo dealera, drobny co-branding) — naruszenie HIGH (-45 pkt).
-- Drobne disclaimery prawne w małym druku — dozwolone, nie flaguj.
+- Obca marka dominująca (logo lub nazwa ≥ wordmark Škody wizualnie) — BLOCKER, score 0.
+- Obca marka w nagłówku lub body copy dużym fontem (np. "z Porsche Inter Auto!", "Toyota", "BMW" jako główny komunikat) — naruszenie HIGH (-45 pkt). To jest co-branding który przejmuje komunikację — obca marka staje się głównym przekazem materiału.
+- Obca marka obecna ale marginalna: małe logo dealera w stopce, drobna nazwa salonu małym drukiem — naruszenie HIGH (-45 pkt) jeśli logo jest rozpoznawalne i większe niż disclaimer, LOW (-10 pkt) jeśli to wyłącznie drobny tekst adresowy.
+- Drobne disclaimery prawne, adresy www, dane kontaktowe w małym druku — dozwolone, nie flaguj.
+- ZASADA KLUCZOWA: jeśli obca marka pojawia się w tym samym rozmiarze co headline lub nagłówek Škody — zawsze HIGH. Pytaj się: "czy odbiorca może pomyśleć że to jest materiał tej innej marki?" — jeśli tak, to HIGH.
 
 ABSOLUTNA CZARNA LISTA — te rzeczy NIGDY nie mogą trafić do violations, bez żadnych wyjątków:
 - Háček w elemencie graficznym "Let's get ŠKODA!" lub "Life gets ŠKODA" — ABSOLUTNY ZAKAZ flagowania. Ten element używa specjalnego fontu brandowego. Nieważne co widzisz — nie flaguj háčka w sloganie graficznym.
